@@ -85,10 +85,18 @@ class Artwork extends \yii\db\ActiveRecord
         ];
     }
 
-    public function afterSave()
+    public function afterDelete()
     {
+        parent::afterDelete();
+        $this->deleteAllImages();
+
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
         //create a new image considering each prefix
-        foreach ($this->imagePrefixes() as $prefix => $sizesArray) 
+        foreach ($this->imagePrefixes() as $prefix => $attributes) 
         {
             $imageFile = $this->imageFile;
             if(!empty($imageFile)){
@@ -100,22 +108,21 @@ class Artwork extends \yii\db\ActiveRecord
                 //saving resized image
                 $path = Yii::getAlias('@artworkImage') . $prefix . md5($this->id) . '.' . $imageFile->getExtension();
 
-                $imageFileOpened->thumbnail(new Box($sizesArray['width'],$sizesArray['height']),
+                $imageFileOpened->thumbnail(new Box($attributes['width'],$attributes['height']),
                  \Imagine\Image\ManipulatorInterface::THUMBNAIL_INSET)
                 ->save($path, ['quality' => 100]);
-                
-                /*$imageFileOpened->resize(new Box($sizesArray['width'],$sizesArray['height']))
-                    ->save($path, ['quality' => 100]);*/
-                
-                /*
-                //saving original
-                if(!empty($image))
-                    $imageFile->saveAs(Yii::getAlias('@image') . md5($this->id) . '.' . $imageFile->getExtension());
-                */
         
             }
         }
         
+    }
+
+    private function deleteAllImages()
+    {
+        foreach ($this->imagePrefixes() as $prefix => $attributes) 
+        {
+            $this->deleteImage($prefix);
+        }
     }
 
     public function deleteImage($prefix)
