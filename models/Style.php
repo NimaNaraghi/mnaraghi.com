@@ -40,4 +40,9 @@ class Style extends \yii\db\ActiveRecord
             'title' => Yii::t('app', 'Title'),
         ];
     }
+
+    public function getArtworks()
+    {
+        return $this->hasMany(Artwork::className(), ['style_id' => 'id']);
+    }
 }

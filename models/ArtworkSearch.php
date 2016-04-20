@@ -18,7 +18,7 @@ class ArtworkSearch extends artwork
     public function rules()
     {
         return [
-            [['id', 'code', 'width', 'height', 'theme', 'category', 'style', 'technic', 'view'], 'integer'],
+            [['id', 'code', 'width', 'height', 'theme_id', 'category_id', 'style_id', 'technic_id', 'view'], 'integer'],
             [['title', 'description'], 'safe'],
         ];
     }
@@ -63,10 +63,10 @@ class ArtworkSearch extends artwork
             'code' => $this->code,
             'width' => $this->width,
             'height' => $this->height,
-            'theme' => $this->theme,
-            'category' => $this->category,
-            'style' => $this->style,
-            'technic' => $this->technic,
+            'theme_id' => $this->theme_id,
+            'category_id' => $this->category_id,
+            'style_id' => $this->style_id,
+            'technic_id' => $this->technic_id,
             'view' => $this->view,
         ]);
 

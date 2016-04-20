@@ -25,6 +25,26 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
+    <div class="col-md-10">
+        <div class="panel panel-default">
+          <div class="panel-heading"><?= Yii::t('app','Images') ?></div>
+          <div class="panel-body">
+                <?php
+                    if(!$model->isNewRecord){
+                        $imageURLs = $model->getImageURLs();
+                        foreach ($imageURLs as $prefix => $url) 
+                        {
+                            echo Html::tag('h3',$model->imagePrefixes()[$prefix]['title']);
+                            echo Html::img($url,['class' => 'well']);
+                        }
+                    }
+                ?> 
+            </div>
+        </div>    
+    </div>
+
+    <div class="col-md-2">
+
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -33,13 +53,37 @@ $this->params['breadcrumbs'][] = $this->title;
             'code',
             'width',
             'height',
-            'theme',
-            'category',
-            'style',
-            'technic',
+            [
+                'attribute' => 'theme_id',
+                'value' => isset($model->theme->title) ? $model->theme->title : null,
+                'format' => 'html',
+
+            ],
+            [
+                'attribute' => 'category_id',
+                'value' => isset($model->category->title) ? $model->category->title : null,
+                'format' => 'html',
+
+            ],
+            [
+                'attribute' => 'technic_id',
+                'value' => isset($model->technic->title) ? $model->technic->title : null,
+                'format' => 'html',
+
+            ],
+            [
+                'attribute' => 'style_id',
+                'value' => isset($model->style->title) ? $model->style->title : null ,
+                'format' => 'html',
+
+            ],
             'description:ntext',
             'view',
         ],
     ]) ?>
+
+    </div>
+
+
 
 </div>

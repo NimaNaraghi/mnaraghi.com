@@ -8,6 +8,7 @@ use app\models\ArtworkSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ArtworkController implements the CRUD actions for artwork model.
@@ -65,7 +66,13 @@ class ArtworkController extends Controller
     {
         $model = new artwork();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if(!$model->save()){
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -84,7 +91,13 @@ class ArtworkController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if($model->load(Yii::$app->request->post())) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if(!$model->save()){
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -119,6 +132,44 @@ class ArtworkController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    public function actionDeleteImage($id,$prefix)
+    {
+        $model = $this->findModel($id);
+        $model->deleteImage($prefix);
+
+        return $this->render('update', [
+                'model' => $model,
+            ]);
+    }
+
+    public function actionUpdateAttribute()
+    {
+        if(Yii::$app->request->isAjax){
+            Yii::$app->response->format = \yii\web\response::FORMAT_JSON;
+            $post = Yii::$app->request->post();
+            
+            $value = $post['value'];
+            $attribute = $post['attribute'];
+            $id = $post['id'];
+            
+            if($model = $this->findModel($id)){
+                
+                $model->$attribute = $value;
+                
+                if($model->save()){
+                    return ['message' => Yii::t('app','Model updated successfully.'),'status'=>'successful'];
+                }
+                else{
+                    throw new \yii\db\Exception(Yii::t('app','Model did NOT updated successfully'));
+                }
+            }
+            else{
+                
+                throw new NotFoundHttpException(Yii::t('app','Model was NOT found OR attribute does NOT exist.'));
+            }
         }
     }
 }

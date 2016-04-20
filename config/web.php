@@ -54,6 +54,9 @@ $config = [
         
     ],
     'params' => $params,
+    'aliases' => [
+            '@artworkImage' => '@app/web/uploads/images/artworks/',
+    ],
 ];
 
 if (YII_ENV_DEV) {

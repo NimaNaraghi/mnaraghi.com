@@ -40,4 +40,9 @@ class Category extends \yii\db\ActiveRecord
             'title' => Yii::t('app', 'Title'),
         ];
     }
+
+    public function getArtworks()
+    {
+        return $this->hasMany(Artwork::className(), ['category_id' => 'id']);
+    }
 }
