@@ -5,7 +5,7 @@ use yii\helpers\Url;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use app\models\Artwork;
-
+use kartik\switchinput\SwitchInput;
 use app\modules\admin\assets\AdminAsset;
 
 AdminAsset::register($this);
@@ -144,6 +144,49 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Html::img($small_thumb); 
                     
                 },
+            ],
+            [
+                'class' => 'yii\grid\DataColumn',
+                'attribute' => 'status',
+                'format' => 'raw',
+                'filter' => Html::dropDownList('ArtworkSearch[status]',$searchModel->status,[Yii::t('app','OFF'),Yii::t('app','ON')],['class'=>'form-control','prompt'=>' ']),
+                'content' => function($data){
+                    return SwitchInput::widget([
+                        
+                        'name' => '[]Artwork[status]',
+                        'value' => $data->status,
+                        'type' => SwitchInput::CHECKBOX,
+                        'options' => ['data-id' => $data->id],
+                        'pluginOptions' => ['size' => 'mini'],
+                        'labelOptions' => ['style' => 'font-size: 12px'],
+                        'pluginEvents' => ["switchChange.bootstrapSwitch"=>"function(){
+                            
+                            var el = $(this);
+                            var id = $(this).attr('data-id');
+                            
+                            var attribute = 'status';
+                            var value = $(this).val();
+                            if(value == 0){
+                                value =1;
+                                $(this).val(1);
+                            }
+                            else{
+                                value =0;
+                                $(this).val(0);
+                            }
+                            url = '".Url::to(['artwork/update-attribute'])."',
+                            $.post(url,{'id':id,'attribute':attribute,'value':value },function(result){
+                                
+                                el.parents('.form-group').next('span').toggle('slow','swing').toggle('slow','swing');
+                                
+                            },'json').fail(function(result){
+                                var msg = result.responseJSON.message;
+                                alert(msg);
+                            });
+                            
+                        }"],
+                    ]).'<span class="successful-response glyphicon glyphicon-ok alert-success"></span>';
+                }
             ],
 
             ['class' => 'yii\grid\ActionColumn'],

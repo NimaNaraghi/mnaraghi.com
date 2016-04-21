@@ -1,7 +1,8 @@
 <?php
 
 namespace app\modules\admin\controllers;
-
+use yii\data\ActiveDataProvider;
+use app\models\Artwork;
 use yii\web\Controller;
 
 /**
@@ -15,6 +16,13 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+    	$query = Artwork::find()->orderBy('view');
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+        ]);
     }
 }

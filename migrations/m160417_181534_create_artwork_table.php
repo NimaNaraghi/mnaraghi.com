@@ -28,22 +28,22 @@ class m160417_181534_create_artwork_table extends Migration
 
         $this->createTable('theme',[
                 'id' => $this->primaryKey(),
-                'title' => $this->string(),
+                'title' => $this->string()->notNull(),
             ],'ENGINE = InnoDB');
 
         $this->createTable('category',[
                 'id' => $this->primaryKey(),
-                'title' => $this->string(),
+                'title' => $this->string()->notNull(),
             ],'ENGINE = InnoDB');
 
         $this->createTable('style',[
                 'id' => $this->primaryKey(),
-                'title' => $this->string(),
+                'title' => $this->string()->notNull(),
             ],'ENGINE = InnoDB');
 
         $this->createTable('technic',[
                 'id' => $this->primaryKey(),
-                'title' => $this->string(),
+                'title' => $this->string()->notNull(),
             ],'ENGINE = InnoDB');
 
 

@@ -9,6 +9,7 @@ use Imagine\Image\Box;
 use Imagine\Image\Point;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\behaviors\TimestampBehavior;
 /**
  * This is the model class for table "artwork".
  *
@@ -36,6 +37,20 @@ class Artwork extends \yii\db\ActiveRecord
 
     const SMALL_THUMB_WIDTH = 80;
     const SMALL_THUMB_HEIGHT = 80;
+
+    const STATUS_OFF = 0;
+    const STATUS_ON = 1;
+    
+
+    public static function getStatusOptions()
+    {
+        return [
+            self::STATUS_OFF => Yii::t('app','OFF'),
+            self::STATUS_ON => Yii::t('app','ON'),  
+        ];
+    }
+
+
     /**
      * @inheritdoc
      */
@@ -50,7 +65,7 @@ class Artwork extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['code', 'width', 'height', 'theme_id', 'category_id', 'style_id', 'technic_id', 'view'], 'integer'],
+            [['code', 'width', 'height', 'theme_id', 'category_id', 'style_id', 'technic_id', 'view' , 'status'], 'integer'],
             [['description'], 'string'],
             [['title'], 'string', 'max' => 255],
         ];
@@ -73,6 +88,17 @@ class Artwork extends \yii\db\ActiveRecord
             'technic_id' => Yii::t('app', 'Technic'),
             'description' => Yii::t('app', 'Description'),
             'view' => Yii::t('app', 'View'),
+            'status' => Yii::t('app', 'Status'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+        ];
+    }
+
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
         ];
     }
 

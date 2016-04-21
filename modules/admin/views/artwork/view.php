@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\Artwork;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\artwork */
@@ -25,25 +26,9 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <div class="col-md-10">
-        <div class="panel panel-default">
-          <div class="panel-heading"><?= Yii::t('app','Images') ?></div>
-          <div class="panel-body">
-                <?php
-                    if(!$model->isNewRecord){
-                        $imageURLs = $model->getImageURLs();
-                        foreach ($imageURLs as $prefix => $url) 
-                        {
-                            echo Html::tag('h3',$model->imagePrefixes()[$prefix]['title']);
-                            echo Html::img($url,['class' => 'well']);
-                        }
-                    }
-                ?> 
-            </div>
-        </div>    
-    </div>
+    
 
-    <div class="col-md-2">
+    <div class="col-md-3">
 
     <?= DetailView::widget([
         'model' => $model,
@@ -77,13 +62,37 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'html',
 
             ],
+            [
+                'attribute' => 'status',
+                'value' => Artwork::getStatusOptions()[$model->status],
+                'format' => 'html',
+
+            ],
             'description:ntext',
             'view',
+            'created_at:datetime',
+            'updated_at:datetime'
         ],
     ]) ?>
 
     </div>
-
+    <div class="col-md-9">
+        <div class="panel panel-default">
+          <div class="panel-heading"><?= Yii::t('app','Images') ?></div>
+          <div class="panel-body">
+                <?php
+                    if(!$model->isNewRecord){
+                        $imageURLs = $model->getImageURLs();
+                        foreach ($imageURLs as $prefix => $url) 
+                        {
+                            echo Html::tag('h3',$model->imagePrefixes()[$prefix]['title']);
+                            echo Html::img($url,['class' => 'img-responsive well']);
+                        }
+                    }
+                ?> 
+            </div>
+        </div>    
+    </div>
 
 
 </div>

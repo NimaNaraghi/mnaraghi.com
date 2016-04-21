@@ -7,7 +7,7 @@ use app\models\Theme;
 use app\models\Category;
 use app\models\Style;
 use app\models\Technic;
-
+use app\models\Artwork;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\artwork */
@@ -51,6 +51,8 @@ use app\models\Technic;
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'imageFile')->fileInput(['accept' => 'image/*']) ?>
+
+    <?= $form->field($model, 'status')->dropdownList(Artwork::getStatusOptions()) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
