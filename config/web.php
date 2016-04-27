@@ -51,11 +51,17 @@ $config = [
             'rules' => [
             ],
         ],
+        'assetManager' => [
+            'appendTimestamp' => true,
+            //'linkAssets' => true,
+            'forceCopy' => true,
+        ],
         
     ],
     'params' => $params,
     'aliases' => [
             '@artworkImage' => '@app/web/uploads/images/artworks/',
+            '@carouselImage' => '@app/web/uploads/images/carousel/',
     ],
 ];
 

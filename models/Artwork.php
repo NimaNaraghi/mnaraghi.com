@@ -164,6 +164,17 @@ class Artwork extends \yii\db\ActiveRecord
         }
 
     }
+
+    public function getImagePath($prefix)
+    {
+        $prefixes = $this->imagePrefixes();
+        $path = null;
+        if($this->imageExist($prefix))
+            $path =  Yii::getAlias('@artworkImage') . $prefix . md5($this->id) . '.jpg';
+        return $path;
+            
+
+    }
     
     public function getImageURLs($options = [])
     {   

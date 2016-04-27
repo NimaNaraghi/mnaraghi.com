@@ -36,13 +36,14 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Front-End', 'url' => ['/site/index']],
-            ['label' => 'Admin Home', 'url' => ['default/index']],
-            ['label' => 'Artworks Management', 'url' => ['artwork/index']],
-            ['label' => 'Art Themes', 'url' => ['theme/index']],
-            ['label' => 'Style', 'url' => ['style/index']],
-            ['label' => 'Technic', 'url' => ['technic/index']],
-            ['label' => 'Category', 'url' => ['category/index']],
+            ['label' => Yii::t('app','Front-End'), 'url' => ['/site/index']],
+            ['label' => Yii::t('app','Admin Home'), 'url' => ['default/index']],
+            ['label' => Yii::t('app','Artworks Management'), 'url' => ['artwork/index']],
+            ['label' => Yii::t('app','Art Themes'), 'url' => ['theme/index']],
+            ['label' => Yii::t('app','Style'), 'url' => ['style/index']],
+            ['label' => Yii::t('app','Technic'), 'url' => ['technic/index']],
+            ['label' => Yii::t('app','Category'), 'url' => ['category/index']],
+            ['label' => Yii::t('app','Carousel'), 'url' => ['carousel/index']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (

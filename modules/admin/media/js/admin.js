@@ -22,4 +22,38 @@ $(document).ready(function(){
 		});
 		
 	});
+
+
+	$(document).on('click','.post-link',function(e){
+		var url = $(this).attr('href');
+		var data = $(this).data();
+		e.preventDefault();
+		$.post(url,data,function(result){
+			newElement = $(result).find('.carousel-list').html();
+			//console.log(newElement);
+			$('.carousel-list').html(newElement);
+			$('.sortable').sortable();
+			//Similar function has been added to pluginOptions in server side to handle normal functionality
+			$('.sortable').sortable().bind('sortupdate', function(e, ui) {
+				var dataIdArray = {};
+	    		var i = 0;
+
+	    		$(".sortable").children("li").each(function(){
+	    			
+	    			dataIdArray[i++] = $(this).children("a").data("id");
+	    			
+	    		});
+				
+				$.post($("sortable").data("url"),{orders: dataIdArray,action: "Sort"}, function(result){
+	    				//console.log(result);
+	    		});
+			});
+		}).fail(function(result){
+			console.log(result);	
+			$("#error-modal").find(".modal-body").html(result.responseText);
+			$("#error-modal").modal();
+		});
+	});
+
 });
+

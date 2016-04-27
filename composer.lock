@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "55f1f715e37232e508c093296de230b8",
-    "content-hash": "a6bfd7951518ce21fdb0b27ac1af7353",
+    "hash": "e9afe767505dd92279b9195ddec2ad7a",
+    "content-hash": "faeb1d5735359a5c763d4c4c9347d8a7",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -371,16 +371,16 @@
         },
         {
             "name": "kartik-v/yii2-krajee-base",
-            "version": "dev-master",
+            "version": "v1.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-krajee-base.git",
-                "reference": "a70c97f0d48fc5ce7c8a911252f1cea91e266812"
+                "reference": "3115b09aeb15a5e06f38dc16860baf153d9bf70e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/a70c97f0d48fc5ce7c8a911252f1cea91e266812",
-                "reference": "a70c97f0d48fc5ce7c8a911252f1cea91e266812",
+                "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/3115b09aeb15a5e06f38dc16860baf153d9bf70e",
+                "reference": "3115b09aeb15a5e06f38dc16860baf153d9bf70e",
                 "shasum": ""
             },
             "require": {
@@ -418,7 +418,54 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-04-19 17:30:09"
+            "time": "2016-04-11 09:07:40"
+        },
+        {
+            "name": "kartik-v/yii2-sortable",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-sortable.git",
+                "reference": "650dfd6876115fbb996eb6eb8f1d5d13ddb69285"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-sortable/zipball/650dfd6876115fbb996eb6eb8f1d5d13ddb69285",
+                "reference": "650dfd6876115fbb996eb6eb8f1d5d13ddb69285",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-krajee-base": "~1.7"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\sortable\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Create sortable lists and grids using HTML5 drag and drop API for Yii 2.0.",
+            "homepage": "https://github.com/kartik-v/yii2-sortable",
+            "keywords": [
+                "bootstrap",
+                "extension",
+                "jquery",
+                "range",
+                "sortable",
+                "widget",
+                "yii2"
+            ],
+            "time": "2015-06-17 17:34:48"
         },
         {
             "name": "kartik-v/yii2-widget-switchinput",
@@ -533,7 +580,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/625d0b0033c550ae920041ab479471a2bb1ddf5b",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/66c56bca952f7af737348188a5e1162a032d248e",
                 "reference": "b7f5435306a46c1fc72c102087143218513eece0",
                 "shasum": ""
             },
@@ -851,7 +898,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/1c33e894fbbad6cf65bd42871719cd33227ed6a7",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/2e4b26888b33fc733042b116e63336424daeef20",
                 "reference": "1c33e894fbbad6cf65bd42871719cd33227ed6a7",
                 "shasum": ""
             },
@@ -1078,7 +1125,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/70edab5a7938b5bf4b5dc3ad1e1c3ce673552f48",
+                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/62eddfcbf377353777742b3ceaf2b75dc81178e3",
                 "reference": "70edab5a7938b5bf4b5dc3ad1e1c3ce673552f48",
                 "shasum": ""
             },
@@ -1124,7 +1171,10 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "kartik-v/yii2-sortable": 0,
+        "kartik-v/yii2-krajee-base": 0
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
