@@ -56,6 +56,15 @@ $config = [
             //'linkAssets' => true,
             'forceCopy' => true,
         ],
+        'view' => [
+            'theme' => [
+                /*'basePath' => '@app/themes/kataklimt',
+                'baseUrl' => '@web/themes/kataklimt',*/
+                'pathMap' => [
+                    '@app/views' => '@app/themes/kataklimt/views',
+                ],
+            ],
+        ],
         
     ],
     'params' => $params,

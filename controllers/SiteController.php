@@ -8,9 +8,16 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Carousel;
+use app\models\Artwork;
+use app\models\Theme;
+use app\models\Style;
+use app\models\Technic;
+use app\models\Category;
 
 class SiteController extends Controller
 {
+    public $defaultAction = 'about';
     public function behaviors()
     {
         return [
@@ -24,6 +31,7 @@ class SiteController extends Controller
                         'roles' => ['@'],
                     ],
                 ],
+
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -40,16 +48,45 @@ class SiteController extends Controller
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
-            'captcha' => [
+            /*'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
+            ],*/
         ];
     }
 
-    public function actionIndex()
+
+    public function actionGallery()
     {
-        return $this->render('index');
+        $request = Yii::$app->request;
+        $query = Artwork::find();
+
+        $theme_id = $style_id = $technic_id = $category_id = null;
+        
+        if($request->get('theme') != null){
+            $theme = Theme::find()->where(['title' => $request->get('theme')])->one();
+            $theme_id = $theme->id;
+        }
+        if($request->get('style') != null){
+            $style = Style::find()->where(['title' => $request->get('style')])->one();
+            $style_id = $style->id;
+        }
+        if($request->get('technic') != null){
+            $technic = Technic::find()->where(['title' => $request->get('technic')])->one();
+            $technic_id = $technic->id;
+        }
+        if($request->get('category') != null){
+            $category = Category::find()->where(['title' => $request->get('category')])->one();
+            $category_id = $category->id;
+        }
+        $query->andFilterWhere([
+            'theme_id' => $theme_id,
+            'style_id' => $style_id,
+            'technic_id' => $technic_id,
+            'category_id' => $category_id,
+        ]);
+        $artworks = $query->all();
+        return $this->render('gallery', ['artworks' => $artworks]);
     }
 
     public function actionLogin()
@@ -77,11 +114,16 @@ class SiteController extends Controller
     public function actionContact()
     {
         $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
+        if(Yii::$app->request->isAjax){ 
+            //Yii::$app->response->format = \yii\web\response::FORMAT_JSON;
+            $model->name = Yii::$app->request->post('name');
+            $model->email = Yii::$app->request->post('email');
+            $model->message = Yii::$app->request->post('message');
+            if ( $model->contact(Yii::$app->params['adminEmail'])) {  
+                echo "<p>" . Yii::t('app', 'Sent! Thank you!') ."</p>";    
+            }
         }
+
         return $this->render('contact', [
             'model' => $model,
         ]);
@@ -89,6 +131,18 @@ class SiteController extends Controller
 
     public function actionAbout()
     {
-        return $this->render('about');
+        $carousels = Carousel::find()->orderBy('order')->all();
+        $features = Artwork::find()->limit(4)->orderBy('id DESC')->all();
+        $latests = Artwork::find()->limit(12)->orderBy('id ASC')->all();
+        $featuredThemes = \app\models\Theme::find()->limit(4)->all();
+        $featuredStyles = \app\models\Style::find()->limit(4)->all();
+
+        return $this->render('about',[
+            'carousels' => $carousels,
+            'features' => $features,
+            'featuredStyles' => $featuredStyles,
+            'featuredThemes' => $featuredThemes,
+            'latests' => $latests,
+        ]);
     }
 }

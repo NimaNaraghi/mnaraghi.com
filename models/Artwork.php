@@ -30,13 +30,16 @@ class Artwork extends \yii\db\ActiveRecord
     public $imageFile;
 
     const IMAGE_MAX_WIDTH = 1280;
-    const IMAGE_MAX_HEIGHT = 720;    
+    const IMAGE_MAX_HEIGHT = 720;   
 
-    const BIG_THUMB_WIDTH = 800;
-    const BIG_THUMB_HEIGHT = 600;
+    const BIGGER_THUMB_WIDTH = 350;
+    const BIGGER_THUMB_HEIGHT = 350; 
 
-    const SMALL_THUMB_WIDTH = 80;
-    const SMALL_THUMB_HEIGHT = 80;
+    const BIG_THUMB_WIDTH = 270;
+    const BIG_THUMB_HEIGHT = 180;
+
+    const SMALL_THUMB_WIDTH = 120;
+    const SMALL_THUMB_HEIGHT = 87;
 
     const STATUS_OFF = 0;
     const STATUS_ON = 1;
@@ -107,7 +110,8 @@ class Artwork extends \yii\db\ActiveRecord
         return [
             'main_' => ['width' => self::IMAGE_MAX_WIDTH,'height' => self::IMAGE_MAX_HEIGHT , 'title' => Yii::t('app','Main')],
             'small_' => ['width' => self::SMALL_THUMB_WIDTH,'height' => self::SMALL_THUMB_HEIGHT , 'title' => Yii::t('app','Small')], 
-            'big_' => ['width' => self::BIG_THUMB_WIDTH,'height' => self::BIG_THUMB_HEIGHT , 'title' => Yii::t('app','Big')]
+            'big_' => ['width' => self::BIG_THUMB_WIDTH,'height' => self::BIG_THUMB_HEIGHT , 'title' => Yii::t('app','Big')],
+            'bigger_' => ['width' => self::BIGGER_THUMB_WIDTH,'height' => self::BIGGER_THUMB_HEIGHT , 'title' => Yii::t('app','Bigger')],
         ];
     }
 
@@ -135,7 +139,7 @@ class Artwork extends \yii\db\ActiveRecord
                 $path = Yii::getAlias('@artworkImage') . $prefix . md5($this->id) . '.' . $imageFile->getExtension();
 
                 $imageFileOpened->thumbnail(new Box($attributes['width'],$attributes['height']),
-                 \Imagine\Image\ManipulatorInterface::THUMBNAIL_INSET)
+                 \Imagine\Image\ImageInterface::THUMBNAIL_OUTBOUND)
                 ->save($path, ['quality' => 100]);
         
             }
@@ -187,6 +191,8 @@ class Artwork extends \yii\db\ActiveRecord
                 if(array_key_exists($inputPrefix, $prefixes) && $this->imageExist($inputPrefix)){
                     $urlArrays[$inputPrefix] = \yii\helpers\Url::to(['/']) . '/uploads/images/artworks/' . $inputPrefix . md5($this->id) . '.jpg';
                 }
+                else
+                    $urlArrays[$inputPrefix] = null;
             } 
 
         }
@@ -197,6 +203,8 @@ class Artwork extends \yii\db\ActiveRecord
             {
                 if($this->imageExist($prefix))
                     $urlArrays[$prefix] =  \yii\helpers\Url::to(['/']) . '/uploads/images/artworks/' . $prefix . md5($this->id) . '.jpg';
+                else
+                    $urlArrays[$prefix] = null;
             }
             
         }

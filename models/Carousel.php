@@ -20,8 +20,8 @@ use yii\helpers\Url;
 class Carousel extends \yii\db\ActiveRecord
 {
     const IMAGE_PREFIX = "carousel_"; 
-    const WIDTH = "400";
-    const HEIGHT = "150";
+    const WIDTH = "770";
+    const HEIGHT = "393";
     const LIMIT = 6;
     /**
      * @inheritdoc
@@ -81,8 +81,7 @@ class Carousel extends \yii\db\ActiveRecord
             //saving resized image
             $path = Yii::getAlias('@carouselImage') . self::IMAGE_PREFIX . md5($this->artwork->id) . '.' . $imageFileExtension;
 
-            $imageFileOpened->thumbnail(new Box(self::WIDTH,self::HEIGHT),
-             \Imagine\Image\ManipulatorInterface::THUMBNAIL_INSET)
+            $imageFileOpened->thumbnail(new Box(self::WIDTH,self::HEIGHT))
             ->save($path, ['quality' => 100]);
     
         }
