@@ -132,7 +132,7 @@ class SiteController extends Controller
     public function actionAbout()
     {
         $carousels = Carousel::find()->orderBy('order')->all();
-        $features = Artwork::find()->limit(4)->orderBy('id DESC')->all();
+        $features = Artwork::find()->limit(4)->orderBy('id DESC')->where(['featured' => Artwork::FEATURED_ON])->all();
         $latests = Artwork::find()->limit(12)->orderBy('id ASC')->all();
         $featuredThemes = \app\models\Theme::find()->limit(4)->all();
         $featuredStyles = \app\models\Style::find()->limit(4)->all();

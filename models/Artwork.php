@@ -24,6 +24,9 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $technic
  * @property string $description
  * @property integer $view
+ * @property integer $created_at
+ * @property integer $updated_at
+ * @property integer $featured
  */
 class Artwork extends \yii\db\ActiveRecord
 {
@@ -43,6 +46,9 @@ class Artwork extends \yii\db\ActiveRecord
 
     const STATUS_OFF = 0;
     const STATUS_ON = 1;
+
+    const FEATURED_OFF = 0;
+    const FEATURED_ON = 1;
     
 
     public static function getStatusOptions()
@@ -50,6 +56,14 @@ class Artwork extends \yii\db\ActiveRecord
         return [
             self::STATUS_OFF => Yii::t('app','OFF'),
             self::STATUS_ON => Yii::t('app','ON'),  
+        ];
+    }
+
+    public static function getFeaturedOptions()
+    {
+        return [
+            self::FEATURED_OFF => Yii::t('app','OFF'),
+            self::FEATURED_ON => Yii::t('app','ON'),  
         ];
     }
 
@@ -68,7 +82,7 @@ class Artwork extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['code', 'width', 'height', 'theme_id', 'category_id', 'style_id', 'technic_id', 'view' , 'status'], 'integer'],
+            [['code', 'width', 'height', 'theme_id', 'category_id', 'style_id', 'technic_id', 'view' , 'status', 'featured'], 'integer'],
             [['description'], 'string'],
             [['title'], 'string', 'max' => 255],
         ];
@@ -94,6 +108,7 @@ class Artwork extends \yii\db\ActiveRecord
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'featured' => Yii::t('app', 'Featured'),
         ];
     }
 
@@ -268,4 +283,6 @@ class Artwork extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Style::className(), ['id' => 'style_id']);
     }
+
+    
 }

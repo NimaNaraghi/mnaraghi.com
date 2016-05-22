@@ -61,7 +61,7 @@ $bundle = ThemeAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<!-- <div class="spinner"></div> -->
+<div class="spinner"></div>
 <!--============================== header =================================-->
 <header>
     <div class="container clearfix">
@@ -73,9 +73,9 @@ $bundle = ThemeAsset::register($this);
             <a class="btn btn-navbar btn-navbar_" data-toggle="collapse" data-target=".nav-collapse_"><?= Yii::t('app','Menu') ?> <span class="icon-bar"></span> </a>
             <div class="nav-collapse nav-collapse_  collapse">
                   <ul class="nav sf-menu">
-                <li class="active"><a href="<?= Url::to(['site/about']) ?>"><?= Yii::t('app','About') ?></a></li>
-                <li class="sub-menu"><a href="<?= Url::to(['site/gallery']) ?>"><?= Yii::t('app','Gallery') ?></a></li>
-                <li><a href="<?= Url::to(['site/contact']) ?>"><?= Yii::t('app','Contact') ?></a></li>
+                <li <?php echo $this->context->action->id == 'about' ?  'class="active"' :  null ?>><a href="<?= Url::to(['site/about']) ?>"><?= Yii::t('app','About') ?></a></li>
+                <li <?php echo $this->context->action->id == 'gallery' ?  'class="active"' :  null ?>><a href="<?= Url::to(['site/gallery']) ?>"><?= Yii::t('app','Gallery') ?></a></li>
+                <li <?php echo $this->context->action->id == 'contact' ?  'class="active"' :  null ?>><a href="<?= Url::to(['site/contact']) ?>"><?= Yii::t('app','Contact') ?></a></li>
               </ul>
             </div>
             </div>
@@ -93,11 +93,11 @@ $bundle = ThemeAsset::register($this);
       <div class="container clearfix">
     <ul class="list-social pull-right">
           <li><a class="icon-1" href="#"></a></li>
-          <li><a class="icon-2" href="#"></a></li>
+          <!-- <li><a class="icon-2" href="#"></a></li>
           <li><a class="icon-3" href="#"></a></li>
-          <li><a class="icon-4" href="#"></a></li>
+          <li><a class="icon-4" href="#"></a></li> -->
         </ul>
-    <div class="privacy pull-left">Website Template designed by <a href="http://www.templatemonster.com/" target="_blank" rel="nofollow">TemplateMonster.com</a> </div>
+    <div class="privacy pull-left">All rights reserved.</div>
   </div>
     </footer>
 <?php $this->endBody() ?>

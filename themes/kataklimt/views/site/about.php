@@ -25,9 +25,7 @@ $this->title = 'About';
         <span id="responsiveFlag"></span>
         <div class="block-slogan">
               <h2><?= Yii::t('app','Welcome!') ?></h2>
-            <div>
-            	<p><a href="http://blog.templatemonster.com/free-website-templates/ " target="_blank" class="link-1">Click here</a> for more info about this free website template created by TemplateMonster.com. This is a Bootstrap template that goes with several layout options (for desktop, tablet, smartphone landscape and portrait) to fit all popular screen resolutions. The PSD source files of this template are available for free for the registered members of TemplateMonster.com. Feel free to get them!</p>
-            </div>
+            
         </div>
       </div>
     </div>
@@ -45,13 +43,13 @@ $this->title = 'About';
 		            <li class="span3">
 		                <div class="thumbnail thumbnail-1">
 		                <h3><?= $featured->title ?></h3>
-		                <img  src="<?= $featured->getImageURLs(['big_'])['big_'] ?>" alt="">
+		                <?= Html::a(Html::img($featured->getImageURLs(['big_'])['big_']), $featured->getImageURLs(['main_'])['main_'], ['class' => 'gallery-item', 'data-caption' => $this->render('_caption',['artwork' => $featured])]) ?>
 		                <ul>
 			                <li> <?= Yii::t('app','Width') . ': ' . $featured->width . 'cm' ?> </li>
 			                <li> <?= Yii::t('app','Height') . ': ' . $featured->height . 'cm' ?> </li>
 			                <li> <?= Yii::t('app',$featured->style->title) ?> </li>
 		            	</ul>
-		                <a href="#" class="btn btn-1"><?= Yii::t('app','Read More') ?></a> 
+		                <a href="<?= Url::to(['site/gallery']) ?>" class="btn btn-1"><?= Yii::t('app','View More') ?></a> 
 		                </div>
 		            </li>
 
@@ -105,23 +103,9 @@ $this->title = 'About';
             		else
             			$class = '';
 
-            		$caption = "
-            			 
-            				<strong>" . $artwork->title  . "</strong><span><small>" . Yii::t('app','Width') . ": " . $featured->width . "cm x " . Yii::t('app','height') . ": " . $featured->height . "cm </span>
-            				
-            					#" . $artwork->theme->title . "
-            					#" . $artwork->style->title . "
-            					#" . $artwork->technic->title . "
-            				</small>
-            			
-            			<p>	 
-            				<span>" . $artwork->description . "</span>
-            			</p>
-
-            		";
 
             		echo Html::tag('li', 
-            			Html::a(Html::img($artwork->getImageURLs(['small_'])['small_']), $artwork->getImageURLs(['main_'])['main_'], ['class' => 'gallery-item', 'data-caption' => $caption]),
+            			Html::a(Html::img($artwork->getImageURLs(['small_'])['small_']), $artwork->getImageURLs(['main_'])['main_'], ['class' => 'gallery-item', 'data-caption' => $this->render('_caption',['artwork' => $artwork])]),
             		['class' => $class]);
 
             		$index++;

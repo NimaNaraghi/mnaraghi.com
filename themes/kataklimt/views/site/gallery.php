@@ -13,7 +13,7 @@ use yii\helpers\Url;
     <div class="container">
         <div class="row">
         <article class="span12">
-              <h3>Services</h3>
+              <h3><?= Yii::t('app','Gallery') ?></h3>
         </article>
         <div class="clear"></div>
         <ul class="thumbnails thumbnails-1 list-services">
