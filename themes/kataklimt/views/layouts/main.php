@@ -20,7 +20,7 @@ $bundle = ThemeAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <?= Html::csrfMetaTags() ?>
     <?php $this->head() ?>
-    <?php $this->registerJs('if($(window).width()>1024){$.getScript(\'' . Url::to(['/']) . '/js/jquery.preloader.js\');} 
+    <?php $this->registerJs('if($(window).width()>1024){document.write("<"+"script src=\'/mnaraghi.com/web/js/jquery.preloader.js\'></"+"script>");} 
  
         jQuery(window).load(function() {   
             x = $(window).width();        
@@ -72,7 +72,7 @@ $bundle = ThemeAsset::register($this);
             <h1 class="brand brand_"><a href="<?= Url::to(['/']) ?>"><img alt="" src="<?= $bundle->baseUrl . '/img/logo.gif' ?>"> </a></h1>
             <a class="btn btn-navbar btn-navbar_" data-toggle="collapse" data-target=".nav-collapse_"><?= Yii::t('app','Menu') ?> <span class="icon-bar"></span> </a>
             <div class="nav-collapse nav-collapse_  collapse">
-                  <ul class="nav sf-menu">
+              <ul class="nav sf-menu">
                 <li <?php echo $this->context->action->id == 'about' ?  'class="active"' :  null ?>><a href="<?= Url::to(['site/about']) ?>"><?= Yii::t('app','About') ?></a></li>
                 <li <?php echo $this->context->action->id == 'gallery' ?  'class="active"' :  null ?>><a href="<?= Url::to(['site/gallery']) ?>"><?= Yii::t('app','Gallery') ?></a></li>
                 <li <?php echo $this->context->action->id == 'contact' ?  'class="active"' :  null ?>><a href="<?= Url::to(['site/contact']) ?>"><?= Yii::t('app','Contact') ?></a></li>

@@ -60,3 +60,6 @@ $this->title = 'Contact';
           </address>
             </article>
       </div>
+    </div>
+  </div>
+</div> 
