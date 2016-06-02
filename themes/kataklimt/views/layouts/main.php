@@ -16,7 +16,7 @@ $bundle = ThemeAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= 'Mohsen Naraghi | '.Html::encode($this->title) ?></title>
     <meta charset="<?= Yii::$app->charset ?>">
     <?= Html::csrfMetaTags() ?>
     <?php $this->head() ?>

@@ -43,10 +43,19 @@ class SiteController extends Controller
             'class' => 'yii\filters\HttpCache',
             'only' => ['about','gallery'],
             'lastModified' => function ($action, $params) {
-                $q = new \yii\db\Query();
-                return $q->from('artwork')->max('updated_at');
-            },
-        ],
+                    $q = new \yii\db\Query();
+                    return $q->from('artwork')->max('updated_at');
+                },
+            ],
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['about','gallery'],
+                'duration' => 60,
+                'variations' => [
+                    \Yii::$app->language,
+                ],
+                
+            ],
         ];
     }
 
@@ -140,10 +149,10 @@ class SiteController extends Controller
     public function actionAbout()
     {
         $carousels = Carousel::find()->orderBy('order')->all();
-        $features = Artwork::find()->limit(4)->orderBy('id DESC')->where(['featured' => Artwork::FEATURED_ON])->all();
-        $latests = Artwork::find()->limit(12)->orderBy('id ASC')->all();
-        $featuredThemes = \app\models\Theme::find()->limit(4)->all();
-        $featuredStyles = \app\models\Style::find()->limit(4)->all();
+        $features = Artwork::find()->limit(4)->orderBy('id DESC')->where(['featured' => Artwork::FEATURED_ON,'status' => Artwork::STATUS_ON])->all();
+        $latests = Artwork::find()->limit(12)->orderBy('id ASC')->where(['status' => Artwork::STATUS_ON])->all();
+        $featuredThemes = \app\models\Theme::find()->limit(2)->all();
+        $featuredStyles = \app\models\Style::find()->limit(2)->all();
 
         return $this->render('about',[
             'carousels' => $carousels,

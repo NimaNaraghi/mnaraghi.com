@@ -36,7 +36,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => Yii::t('app','Front-End'), 'url' => ['/site/index']],
+            ['label' => Yii::t('app','Front-End'), 'url' => ['/site/about']],
             ['label' => Yii::t('app','Admin Home'), 'url' => ['default/index']],
             ['label' => Yii::t('app','Artworks Management'), 'url' => ['artwork/index']],
             ['label' => Yii::t('app','Art Themes'), 'url' => ['theme/index']],
@@ -72,9 +72,9 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; mnaraghi.com <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        
     </div>
 </footer>
 

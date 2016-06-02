@@ -3,7 +3,7 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\theme;
+use app\models\Theme;
 use app\models\ThemeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -63,7 +63,7 @@ class ThemeController extends Controller
      */
     public function actionCreate()
     {
-        $model = new theme();
+        $model = new Theme();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

@@ -107,4 +107,15 @@ class Carousel extends \yii\db\ActiveRecord
     {
         return Url::to(['/']) . 'uploads/images/carousel/' . self::IMAGE_PREFIX . md5($this->artwork->id) . '.jpg'; 
     }
+
+    public function getImagePath()
+    {
+        
+        
+        
+        $path =  Yii::getAlias('@carouselImage') . self::IMAGE_PREFIX . md5($this->artwork_id) . '.jpg';
+        return $path;
+            
+
+    }
 }

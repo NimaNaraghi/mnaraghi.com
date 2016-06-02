@@ -33,9 +33,16 @@ use yii\helpers\Url;
                         </p>
 
                     ";
+
+            
+          $size = getimagesize($artwork->getImagePath('bigger_'));
+          $htmlWidth = $size[0];
+          $htmlHeight = $size[1];
+                
         ?>
         <li class="span4">
-            <div class="thumbnail thumbnail-1"> <?= Html::a(Html::img($artwork->getImageURLs(['bigger_'])['bigger_']), 
+
+            <div class="thumbnail thumbnail-1"> <?= Html::a(Html::img($artwork->getImageURLs(['bigger_'])['bigger_'],['width'=>$htmlWidth,'height'=>$htmlHeight]), 
                 $artwork->getImageURLs(['main_'])['main_'], ['class' => 'gallery-item', 'data-caption' => $caption]) ?>
                 <section> 
                     <?php

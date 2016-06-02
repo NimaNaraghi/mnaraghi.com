@@ -3,7 +3,7 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\artwork;
+use app\models\Artwork;
 use app\models\ArtworkSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -64,7 +64,7 @@ class ArtworkController extends Controller
      */
     public function actionCreate()
     {
-        $model = new artwork();
+        $model = new Artwork();
 
         if ($model->load(Yii::$app->request->post())) {
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
@@ -128,7 +128,7 @@ class ArtworkController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = artwork::findOne($id)) !== null) {
+        if (($model = Artwork::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

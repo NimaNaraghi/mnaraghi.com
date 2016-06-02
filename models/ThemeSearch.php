@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\theme;
+use app\models\Theme;
 
 /**
  * ThemeSearch represents the model behind the search form about `app\models\theme`.
  */
-class ThemeSearch extends theme
+class ThemeSearch extends Theme
 {
     /**
      * @inheritdoc

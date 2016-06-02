@@ -16,7 +16,11 @@ $this->title = 'About';
             	<?php
             		foreach ($carousels as $carousel) 
             		{
-            		 	echo Html::tag('li', Html::img($carousel->getImageURL()));
+                  $image = $carousel->getImageURL();
+                  $size = getimagesize($carousel->getImagePath());
+                  $width = $size[0];
+                  $height = $size[1];
+            		 	echo Html::tag('li', Html::img($image,['width' => $width, 'height' => $height]));
             		} 
             		
             	?>
@@ -39,11 +43,15 @@ $this->title = 'About';
 	        <div class="row">
 	            <ul class="thumbnails thumbnails-1">
 		        	<?php foreach ($features as $featured): ?>
-
+              <?php
+                  $size = getimagesize($featured->getImagePath('big_'));
+                  $htmlWidth = $size[0];
+                  $htmlHeight = $size[1];
+                ?>
 		            <li class="span3">
 		                <div class="thumbnail thumbnail-1">
 		                <h3><?= $featured->title ?></h3>
-		                <?= Html::a(Html::img($featured->getImageURLs(['big_'])['big_']), $featured->getImageURLs(['main_'])['main_'], ['class' => 'gallery-item', 'data-caption' => $this->render('_caption',['artwork' => $featured])]) ?>
+		                <?= Html::a(Html::img($featured->getImageURLs(['big_'])['big_'],['width' => $htmlWidth , 'height' => $htmlHeight]), $featured->getImageURLs(['main_'])['main_'], ['class' => 'gallery-item', 'data-caption' => $this->render('_caption',['artwork' => $featured])]) ?>
 		                <ul>
 			                <li> <?= Yii::t('app','Width') . ': ' . $featured->width . 'cm' ?> </li>
 			                <li> <?= Yii::t('app','Height') . ': ' . $featured->height . 'cm' ?> </li>
@@ -65,7 +73,7 @@ $this->title = 'About';
         <article class="span6">
               <h3>Shortly about me</h3>
               <div class="wrapper">
-            <figure class="img-indent"><img src="<?= Url::to(['/']) . '/uploads/images/me/me.jpg' ?>" alt="" /></figure>
+            <figure class="img-indent"><img src="<?= '/mnaraghi.com/uploads/images/me/me.jpg' ?>" alt="" /></figure>
             <div class="inner-1 overflow extra">
                   <div class="txt-1">I am Iranian and was born in Shahr-e Rey (1995). After elementary and secondary education at Aryamehr (Sharif) University of Technology,</div>
                    I became engaged in studying in the field of metallurgical engineering. During my education period, due to my very interest in painting, I was passing most of my time in the painting atelier. After graduation I came to understand, that I am more interested in the art of painting. My life has passed with brush and color, and this has always calmed me down. I have no interest in operous painting. I have to transmit my volcanic feelings at the shortest time, on canvas. I passed the “Techniques of using colors”, at the fine arts faculty of Tehran University.
@@ -103,9 +111,15 @@ $this->title = 'About';
             		else
             			$class = '';
 
+                
+                  $size = getimagesize($artwork->getImagePath('small_'));
+                  $htmlWidth = $size[0];
+                  $htmlHeight = $size[1];
+                
+
 
             		echo Html::tag('li', 
-            			Html::a(Html::img($artwork->getImageURLs(['small_'])['small_']), $artwork->getImageURLs(['main_'])['main_'], ['class' => 'gallery-item', 'data-caption' => $this->render('_caption',['artwork' => $artwork])]),
+            			Html::a(Html::img($artwork->getImageURLs(['small_'])['small_'],['width' => $htmlWidth, 'height' => $htmlHeight]), $artwork->getImageURLs(['main_'])['main_'], ['class' => 'gallery-item', 'data-caption' => $this->render('_caption',['artwork' => $artwork])]),
             		['class' => $class]);
 
             		$index++;

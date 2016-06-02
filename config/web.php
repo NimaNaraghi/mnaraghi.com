@@ -55,6 +55,15 @@ $config = [
             'appendTimestamp' => true,
             //'linkAssets' => true,
             'forceCopy' => true,
+            
+            'bundles' => [
+                        'yii\web\JqueryAsset' => [
+                            'js' => [
+                                'jquery.min.js'
+                            ]
+                        ],
+                    ]
+
         ],
         'view' => [
             'theme' => [

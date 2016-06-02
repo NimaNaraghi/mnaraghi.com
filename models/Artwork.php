@@ -33,7 +33,7 @@ class Artwork extends \yii\db\ActiveRecord
     public $imageFile;
 
     const IMAGE_MAX_WIDTH = 1280;
-    const IMAGE_MAX_HEIGHT = 720;   
+    const IMAGE_MAX_HEIGHT = 1200;   
 
     const BIGGER_THUMB_WIDTH = 350;
     const BIGGER_THUMB_HEIGHT = 350; 

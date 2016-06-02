@@ -80,10 +80,10 @@ class CarouselController extends \yii\web\Controller
 
 
     /**
-     * Finds the artwork model based on its primary key value.
+     * Finds the Artwork model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return artwork the loaded model
+     * @return Artwork the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
