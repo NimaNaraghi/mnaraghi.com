@@ -16,7 +16,7 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-    	$query = Artwork::find()->orderBy('view');
+    	$query = Artwork::find()->orderBy('view DESC');
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);

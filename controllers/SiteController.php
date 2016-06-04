@@ -37,6 +37,7 @@ class SiteController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
+                    'updateCounters' => ['post'],
                 ],
             ],
             /*[
@@ -161,5 +162,18 @@ class SiteController extends Controller
             'featuredThemes' => $featuredThemes,
             'latests' => $latests,
         ]);
+    }
+
+    public function actionUpdateCounter()
+    {
+        if(Yii::$app->request->isAjax){
+            $id = Yii::$app->request->post('id');
+            if($artwork = Artwork::findOne($id)){
+                $artwork->updateCounters(['view' => 1]);
+                return true;
+            }
+        }
+        return false;
+
     }
 }

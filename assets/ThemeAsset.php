@@ -33,7 +33,8 @@ class ThemeAsset extends AssetBundle
         'js/jquery.kwicks-1.5.1.js',
         'js/jquery.easing.1.3.js',
         'js/forms.js',
-        'js/jquery.magnific-popup.min.js',*/
+        'js/jquery.magnific-popup.min.js',
+        'js/scripts.js',*/
         'js/all.js',
        
     ];

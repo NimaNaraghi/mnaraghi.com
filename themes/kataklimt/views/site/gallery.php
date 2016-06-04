@@ -43,7 +43,7 @@ use yii\helpers\Url;
         <li class="span4">
 
             <div class="thumbnail thumbnail-1"> <?= Html::a(Html::img($artwork->getImageURLs(['bigger_'])['bigger_'],['width'=>$htmlWidth,'height'=>$htmlHeight]), 
-                $artwork->getImageURLs(['main_'])['main_'], ['class' => 'gallery-item', 'data-caption' => $caption]) ?>
+                $artwork->getImageURLs(['main_'])['main_'], ['class' => 'gallery-item', 'data-caption' => $caption,'onclick'=>"updateViewCounter($featured->id)"]) ?>
                 <section> 
                     <?php
                         echo   "<h5>" . $artwork->title  . "</h5> 

@@ -1,12 +1,10 @@
-jQuery(window).load(function() {	
-$x = $(window).width();		
-if($x > 1024)
-{			
-jQuery("#content .row").preloader();    }	
-
-jQuery('.magnifier').touchTouch();			
-jQuery('.spinner').animate({'opacity':0},1000,'easeOutCubic',function (){jQuery(this).css('display','none')});	
-  }); 
-			
+ 
+function updateViewCounter(data_id){
+	var url = '/mnaraghi.com/web/site/update-counter';
+	var csrf = $('meta[name=csrf-token]').attr('content');
+	$.post(url,{'id':data_id,'_csrf': csrf },function(result){
+		console.log(result);
+	});
+}
 
 	

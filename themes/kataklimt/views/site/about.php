@@ -51,7 +51,7 @@ $this->title = 'About';
 		            <li class="span3">
 		                <div class="thumbnail thumbnail-1">
 		                <h3><?= $featured->title ?></h3>
-		                <?= Html::a(Html::img($featured->getImageURLs(['big_'])['big_'],['width' => $htmlWidth , 'height' => $htmlHeight]), $featured->getImageURLs(['main_'])['main_'], ['class' => 'gallery-item', 'data-caption' => $this->render('_caption',['artwork' => $featured])]) ?>
+		                <?= Html::a(Html::img($featured->getImageURLs(['big_'])['big_'],['width' => $htmlWidth , 'height' => $htmlHeight]), $featured->getImageURLs(['main_'])['main_'], ['class' => 'gallery-item', 'data-caption' => $this->render('_caption',['artwork' => $featured]),'onclick'=>"updateViewCounter($featured->id)"]) ?>
 		                <ul>
 			                <li> <?= Yii::t('app','Width') . ': ' . $featured->width . 'cm' ?> </li>
 			                <li> <?= Yii::t('app','Height') . ': ' . $featured->height . 'cm' ?> </li>
@@ -122,7 +122,7 @@ $this->title = 'About';
 
 
             		echo Html::tag('li', 
-            			Html::a(Html::img($artwork->getImageURLs(['small_'])['small_'],['width' => $htmlWidth, 'height' => $htmlHeight]), $artwork->getImageURLs(['main_'])['main_'], ['class' => 'gallery-item', 'data-caption' => $this->render('_caption',['artwork' => $artwork])]),
+            			Html::a(Html::img($artwork->getImageURLs(['small_'])['small_'],['width' => $htmlWidth, 'height' => $htmlHeight]), $artwork->getImageURLs(['main_'])['main_'], ['class' => 'gallery-item', 'data-caption' => $this->render('_caption',['artwork' => $artwork]),'onclick'=>"updateViewCounter($artwork->id)"]),
             		['class' => $class]);
 
             		$index++;

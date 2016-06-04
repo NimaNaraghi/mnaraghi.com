@@ -10,5 +10,9 @@ $imgUrl = $model->getImageURLs(['big_'])['big_'];
 
 ?>
 
-
+<div class="col-md-8">
 <?= Html::a(Html::img($imgUrl,['class' => "img-responsive well $disabled"]),['artwork/view','id' => $model->id]) ?>
+</div>
+<div class="col-md-4">
+<?= Html::tag('h2',Yii::t('app','Hit : ').$model->view,['class'=>'text-danger']) ?>
+</div>
