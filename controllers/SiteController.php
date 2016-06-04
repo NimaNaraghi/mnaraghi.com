@@ -39,7 +39,7 @@ class SiteController extends Controller
                     'logout' => ['post'],
                 ],
             ],
-            [
+            /*[
             'class' => 'yii\filters\HttpCache',
             'only' => ['about','gallery'],
             'lastModified' => function ($action, $params) {
@@ -55,7 +55,7 @@ class SiteController extends Controller
                     \Yii::$app->language,
                 ],
                 
-            ],
+            ],*/
         ];
     }
 

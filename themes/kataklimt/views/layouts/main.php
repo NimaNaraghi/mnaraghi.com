@@ -18,6 +18,7 @@ $bundle = ThemeAsset::register($this);
 <head>
     <title><?= 'Mohsen Naraghi | '.Html::encode($this->title) ?></title>
     <meta charset="<?= Yii::$app->charset ?>">
+    <meta name="description" content= "Mohsen Naraghi Paintings. You can see my paintings here and be in tough with me.">
     <?= Html::csrfMetaTags() ?>
     <?php $this->head() ?>
     <?php $this->registerJs('if($(window).width()>1024){document.write("<"+"script src=\'/mnaraghi.com/web/js/jquery.preloader.js\'></"+"script>");} 
