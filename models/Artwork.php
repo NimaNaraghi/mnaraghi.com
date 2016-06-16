@@ -153,9 +153,15 @@ class Artwork extends \yii\db\ActiveRecord
                 //saving resized image
                 $path = Yii::getAlias('@artworkImage') . $prefix . md5($this->id) . '.' . $imageFile->getExtension();
 
+                if($prefix != 'main_'){
+                    $quality = 70;
+                }
+                else{
+                    $quality = 100;
+                }
                 $imageFileOpened->thumbnail(new Box($attributes['width'],$attributes['height']),
                  \Imagine\Image\ImageInterface::THUMBNAIL_OUTBOUND)
-                ->save($path, ['quality' => 100]);
+                ->save($path, ['quality' => $quality]);
         
             }
         }
