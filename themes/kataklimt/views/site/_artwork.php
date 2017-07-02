@@ -1,6 +1,8 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\Url;
+if ($this->beginCache('cache-artwork-'.$model->id, ['duration' => 3600])):
+
             if(isset($model->theme->title)){
                 $themeTitle = $model->theme->title;
             }
@@ -16,12 +18,12 @@ use yii\helpers\Url;
             }
             $caption = "
                          
-                            <strong>" . $model->title  . "</strong><span><small>" . Yii::t('app','Width') . ": " . $model->width . "cm x " . Yii::t('app','height') . ": " . $model->height . "cm </span>
+                            <strong>" . $model->title  . "</strong><span><small>" . Yii::t('app','Width') . ": " . $model->width . "cm x " . Yii::t('app','height') . ": " . $model->height . "cm 
                             
                                 #" . $themeTitle . "
                                
                                 #" . $technicTitle . "
-                            </small>
+                            </small></span>
                         
                         <p>  
                             <span>" . $model->description . "</span>
@@ -56,3 +58,7 @@ use yii\helpers\Url;
                 </section>
             </div>
         </li>
+    <?php
+    $this->endCache();
+    endif;
+  ?>

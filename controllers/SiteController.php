@@ -50,16 +50,16 @@ class SiteController extends Controller
                     $q = new \yii\db\Query();
                     return $q->from('artwork')->max('updated_at');
                 },
-            ],
+            ],*/
             [
                 'class' => 'yii\filters\PageCache',
-                'only' => ['about','gallery'],
+                'only' => ['about'],
                 'duration' => 60,
                 'variations' => [
                     \Yii::$app->language,
                 ],
                 
-            ],*/
+            ],
         ];
     }
 
@@ -121,7 +121,7 @@ class SiteController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 2,
+                'pageSize' => 10,
             ],
         ]);
         return $this->render('gallery', [
