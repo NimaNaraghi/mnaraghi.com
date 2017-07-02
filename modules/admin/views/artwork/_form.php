@@ -20,6 +20,8 @@ use app\models\Artwork;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'code')->textInput() ?>
+
     <?= $form->field($model, 'width')->textInput() ?>
 
     <?= $form->field($model, 'height')->textInput() ?>

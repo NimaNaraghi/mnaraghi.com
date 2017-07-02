@@ -123,10 +123,10 @@ class Artwork extends \yii\db\ActiveRecord
     public function imagePrefixes()
     {
         return [
-            'main_' => ['width' => self::IMAGE_MAX_WIDTH,'height' => self::IMAGE_MAX_HEIGHT , 'title' => Yii::t('app','Main')],
-            'small_' => ['width' => self::SMALL_THUMB_WIDTH,'height' => self::SMALL_THUMB_HEIGHT , 'title' => Yii::t('app','Small')], 
-            'big_' => ['width' => self::BIG_THUMB_WIDTH,'height' => self::BIG_THUMB_HEIGHT , 'title' => Yii::t('app','Big')],
-            'bigger_' => ['width' => self::BIGGER_THUMB_WIDTH,'height' => self::BIGGER_THUMB_HEIGHT , 'title' => Yii::t('app','Bigger')],
+            'main-' => ['width' => self::IMAGE_MAX_WIDTH,'height' => self::IMAGE_MAX_HEIGHT , 'title' => Yii::t('app','Main')],
+            'small-' => ['width' => self::SMALL_THUMB_WIDTH,'height' => self::SMALL_THUMB_HEIGHT , 'title' => Yii::t('app','Small')], 
+            'big-' => ['width' => self::BIG_THUMB_WIDTH,'height' => self::BIG_THUMB_HEIGHT , 'title' => Yii::t('app','Big')],
+            'bigger-' => ['width' => self::BIGGER_THUMB_WIDTH,'height' => self::BIGGER_THUMB_HEIGHT , 'title' => Yii::t('app','Bigger')],
         ];
     }
 
@@ -153,7 +153,7 @@ class Artwork extends \yii\db\ActiveRecord
                 //saving resized image
                 $path = Yii::getAlias('@artworkImage') . $prefix . md5($this->id) . '.' . $imageFile->getExtension();
 
-                if($prefix != 'main_'){
+                if($prefix != 'main-'){
                     $quality = 70;
                 }
                 else{
@@ -210,7 +210,7 @@ class Artwork extends \yii\db\ActiveRecord
             foreach ($options as $inputPrefix) 
             {
                 if(array_key_exists($inputPrefix, $prefixes) && $this->imageExist($inputPrefix)){
-                    $urlArrays[$inputPrefix] = \yii\helpers\Url::to(['/']) . '/uploads/images/artworks/' . $inputPrefix . md5($this->id) . '.jpg';
+                    $urlArrays[$inputPrefix] = \yii\helpers\Url::base() . '/uploads/images/artworks/' . $inputPrefix . md5($this->id) . '.jpg';
                 }
                 else
                     $urlArrays[$inputPrefix] = null;
@@ -223,7 +223,7 @@ class Artwork extends \yii\db\ActiveRecord
             foreach($prefixes as $prefix => $sizesArray)
             {
                 if($this->imageExist($prefix))
-                    $urlArrays[$prefix] =  \yii\helpers\Url::to(['/']) . '/uploads/images/artworks/' . $prefix . md5($this->id) . '.jpg';
+                    $urlArrays[$prefix] =  \yii\helpers\Url::base() . '/uploads/images/artworks/' . $prefix . md5($this->id) . '.jpg';
                 else
                     $urlArrays[$prefix] = null;
             }

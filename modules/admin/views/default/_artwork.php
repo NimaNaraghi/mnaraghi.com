@@ -6,7 +6,7 @@ if($model->status == $model::STATUS_OFF)
 else
 	$disabled = '';
 
-$imgUrl = $model->getImageURLs(['big_'])['big_'];
+$imgUrl = $model->getImageURLs(['big-'])['big-'];
 
 ?>
 

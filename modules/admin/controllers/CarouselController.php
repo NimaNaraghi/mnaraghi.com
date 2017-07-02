@@ -53,6 +53,7 @@ class CarouselController extends \yii\web\Controller
 
     	$dataProvider = new ActiveDataProvider([
     		'query' => $query,
+            'pagination' => false,
     	]);
 
     	$carousels = Carousel::find()->orderBy('order')->all();

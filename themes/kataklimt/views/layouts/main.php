@@ -18,7 +18,10 @@ $bundle = ThemeAsset::register($this);
 <head>
     <title><?= 'Mohsen Naraghi | '.Html::encode($this->title) ?></title>
     <meta charset="<?= Yii::$app->charset ?>">
-    <meta name="description" content= "Mohsen Naraghi Paintings. You can see my paintings here and be in tough with me.">
+    <meta name="description" content= "Mohsen Naraghi Paintings. You can see my paintings here.">
+    <meta name="keywords" content="naraghi,mohsen,art,paintings,oil paintings">
+    <meta charset="<?= Yii::$app->charset ?>">
+    <link rel="canonical" href="<?= Url::canonical() ?>" />
     <?= Html::csrfMetaTags() ?>
     <?php $this->head() ?>
     <?php $this->registerJs('if($(window).width()>1024){document.write("<"+"script src=\'/mnaraghi.com/web/js/jquery.preloader.js\'></"+"script>");} 
@@ -44,7 +47,7 @@ $bundle = ThemeAsset::register($this);
               }
 
             });
-                
+               
     ', $this::POS_END, 'inline-scripts'); ?>
 
 

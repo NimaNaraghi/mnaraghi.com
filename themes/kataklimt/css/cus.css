@@ -1,0 +1,10 @@
+.pagination{
+    list-style: none;
+    display: inline;
+    
+}
+.pagination li{
+    display: inline;
+    font-size: 18px;
+    margin: 20px;
+}

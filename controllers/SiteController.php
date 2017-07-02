@@ -14,6 +14,9 @@ use app\models\Theme;
 use app\models\Style;
 use app\models\Technic;
 use app\models\Category;
+use yii\data\Pagination;
+use yii\data\ActiveDataProvider;
+
 
 class SiteController extends Controller
 {
@@ -77,7 +80,7 @@ class SiteController extends Controller
     public function actionGallery()
     {
         $request = Yii::$app->request;
-        $query = Artwork::find();
+        $query = Artwork::find()->where(['status' => Artwork::STATUS_ON]);
 
         $theme_id = $style_id = $technic_id = $category_id = null;
         
@@ -103,8 +106,28 @@ class SiteController extends Controller
             'technic_id' => $technic_id,
             'category_id' => $category_id,
         ]);
-        $artworks = $query->all();
-        return $this->render('gallery', ['artworks' => $artworks]);
+        
+
+       /* $countQuery = clone $query;
+        $pages = new Pagination([
+            'totalCount' => $countQuery->count(),
+            'pageSize' => 10
+            ]);*/
+        $query->orderBy('code DESC');
+
+        /*$artworks = $query->offset($pages->offset)
+            ->limit($pages->limit)
+            ->all();*/
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 2,
+            ],
+        ]);
+        return $this->render('gallery', [
+            'dataProvider' => $dataProvider,
+            //'pages' => $pages,
+            ]);
     }
 
     public function actionLogin()
@@ -151,7 +174,7 @@ class SiteController extends Controller
     {
         $carousels = Carousel::find()->orderBy('order')->all();
         $features = Artwork::find()->limit(4)->orderBy('id DESC')->where(['featured' => Artwork::FEATURED_ON,'status' => Artwork::STATUS_ON])->all();
-        $latests = Artwork::find()->limit(12)->orderBy('id ASC')->where(['status' => Artwork::STATUS_ON])->all();
+        $latests = Artwork::find()->limit(12)->orderBy('id DESC')->where(['status' => Artwork::STATUS_ON])->all();
         $featuredThemes = \app\models\Theme::find()->limit(2)->all();
         $featuredStyles = \app\models\Style::find()->limit(2)->all();
 

@@ -25,6 +25,7 @@ class ThemeAsset extends AssetBundle
         'css/magnific-popup.min.css',*/
         'http://fonts.googleapis.com/css?family=Open+Sans:400,300',
         'css/all.css',
+        'css/cus.css',
     ];
     public $js = [
         /*'js/bootstrap.js',
@@ -35,7 +36,10 @@ class ThemeAsset extends AssetBundle
         'js/forms.js',
         'js/jquery.magnific-popup.min.js',
         'js/scripts.js',*/
+        'js/google-analytics.js',
         'js/all.js',
+        
+        
        
     ];
     public $depends = [

@@ -4,8 +4,9 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-$this->title = 'About';
 
+$this->title = 'About';
+//$this->params['canonical'] = \yii\helpers\Url::
 ?>
 <div class="container">
     <div class="row">
@@ -44,18 +45,24 @@ $this->title = 'About';
 	            <ul class="thumbnails thumbnails-1">
 		        	<?php foreach ($features as $featured): ?>
               <?php
-                  $size = getimagesize($featured->getImagePath('big_'));
+                  if(isset($featured->style->title)){
+                    $styleTitle = $featured->style->title;
+                  }
+                  else{
+                    $styleTitle = "";
+                  }
+                  $size = getimagesize($featured->getImagePath('big-'));
                   $htmlWidth = $size[0];
                   $htmlHeight = $size[1];
                 ?>
 		            <li class="span3">
 		                <div class="thumbnail thumbnail-1">
 		                <h3><?= $featured->title ?></h3>
-		                <?= Html::a(Html::img($featured->getImageURLs(['big_'])['big_'],['width' => $htmlWidth , 'height' => $htmlHeight]), $featured->getImageURLs(['main_'])['main_'], ['class' => 'gallery-item', 'data-caption' => $this->render('_caption',['artwork' => $featured]),'onclick'=>"updateViewCounter($featured->id)"]) ?>
+		                <?= Html::a(Html::img($featured->getImageURLs(['big-'])['big-'],['width' => $htmlWidth , 'height' => $htmlHeight]), $featured->getImageURLs(['main-'])['main-'], ['class' => 'gallery-item', 'data-caption' => $this->render('_caption',['artwork' => $featured]),'onclick'=>"updateViewCounter($featured->id)"]) ?>
 		                <ul>
 			                <li> <?= Yii::t('app','Width') . ': ' . $featured->width . 'cm' ?> </li>
 			                <li> <?= Yii::t('app','Height') . ': ' . $featured->height . 'cm' ?> </li>
-			                <li> <?= Yii::t('app',$featured->style->title) ?> </li>
+			                <li> <?= Yii::t('app',$styleTitle) ?> </li>
 		            	</ul>
 		                <a href="<?= Url::to(['site/gallery']) ?>" class="btn btn-1"><?= Yii::t('app','View More') ?></a> 
 		                </div>
@@ -80,20 +87,20 @@ $this->title = 'About';
                   <div class="overflow">
                 <ul class="list list-pad">
                 	<?php 
-                	foreach($featuredThemes as $theme)
+                	/*foreach($featuredThemes as $theme)
                 	{
                 		echo Html::tag('li', Html::a($theme->title,['site/gallery', 'theme' => $theme->title]));
-                	}
+                	}*/
               		?>
                 </ul>
                 <ul class="list">
           			<?php 
-                	foreach($featuredStyles as $style)
+                	/*foreach($featuredStyles as $style)
                 	{
                 		echo Html::tag('li', Html::a($style->title,['site/gallery', 'style' => $style->title]));
-                	}
+                	}*/
               		?>
-                  <?= Html::tag('li', Html::a('artabus.com', 'https://www.artabus.com/mnaraghi/',['rel'=>'nofollow', 'target'=>'_blank'])) ?>
+                  Links: <?= Html::tag('li', Html::a('artabus.com', 'https://www.artabus.com/mnaraghi/',['rel'=>'nofollow', 'target'=>'_blank'])) ?>
                 </ul>
 
               </div>
@@ -103,7 +110,7 @@ $this->title = 'About';
           </div>
             </article>
         <article class="span6">
-            <h3><?= Yii::t('app','Latest photoshoots') ?></h3>
+            <h3><?= Yii::t('app','Latest Paints') ?></h3>
             <ul class="list-photo">
             <?php 
             	$index = 1;
@@ -115,14 +122,14 @@ $this->title = 'About';
             			$class = '';
 
                 
-                  $size = getimagesize($artwork->getImagePath('small_'));
+                  $size = getimagesize($artwork->getImagePath('small-'));
                   $htmlWidth = $size[0];
                   $htmlHeight = $size[1];
                 
 
 
             		echo Html::tag('li', 
-            			Html::a(Html::img($artwork->getImageURLs(['small_'])['small_'],['width' => $htmlWidth, 'height' => $htmlHeight]), $artwork->getImageURLs(['main_'])['main_'], ['class' => 'gallery-item', 'data-caption' => $this->render('_caption',['artwork' => $artwork]),'onclick'=>"updateViewCounter($artwork->id)"]),
+            			Html::a(Html::img($artwork->getImageURLs(['small-'])['small-'],['width' => $htmlWidth, 'height' => $htmlHeight]), $artwork->getImageURLs(['main-'])['main-'], ['class' => 'gallery-item', 'data-caption' => $this->render('_caption',['artwork' => $artwork]),'onclick'=>"updateViewCounter($artwork->id)"]),
             		['class' => $class]);
 
             		$index++;

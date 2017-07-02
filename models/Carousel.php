@@ -19,7 +19,7 @@ use yii\helpers\Url;
  */
 class Carousel extends \yii\db\ActiveRecord
 {
-    const IMAGE_PREFIX = "carousel_"; 
+    const IMAGE_PREFIX = "carousel-"; 
     const WIDTH = "770";
     const HEIGHT = "393";
     const LIMIT = 6;
@@ -71,7 +71,7 @@ class Carousel extends \yii\db\ActiveRecord
         parent::afterSave($insert, $changedAttributes);
         
         
-        $imagePath = $this->artwork->getImagePath('main_');
+        $imagePath = $this->artwork->getImagePath('main-');
         if(!empty($imagePath)){
             // open image
             $imageFileOpened = Image::getImagine()->open($imagePath);
@@ -105,7 +105,7 @@ class Carousel extends \yii\db\ActiveRecord
 
     public function getImageURL()
     {
-        return Url::to(['/']) . 'uploads/images/carousel/' . self::IMAGE_PREFIX . md5($this->artwork->id) . '.jpg'; 
+        return Url::base() . 'uploads/images/carousel/' . self::IMAGE_PREFIX . md5($this->artwork->id) . '.jpg'; 
     }
 
     public function getImagePath()

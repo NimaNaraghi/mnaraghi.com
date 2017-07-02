@@ -47,6 +47,11 @@ class ArtworkSearch extends Artwork
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC, 
+                ]
+            ],
         ]);
 
         $this->load($params);

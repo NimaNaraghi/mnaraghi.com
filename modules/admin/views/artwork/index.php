@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Html::a($data->title, ['artwork/view','id'=>$data->id]);
                 }
             ],
-            //'code',
+            'code',
             'width',
             'height',
             [
@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'data-id'=>$data->id,
                             'artwork-update-attr' => Url::to(['artwork/update-attribute'])
                         ]
-                    ) . Html::button('<span class="glyphicon glyphicon-refresh"></span>',['class'=>'btn btn-sm btn-danger update-attr-btn', 'data-attr' => 'theme']);
+                    ) . Html::button('<span class="glyphicon glyphicon-refresh"></span>',['class'=>'btn btn-sm btn-danger update-attr-btn', 'data-attr' => 'theme_id']);
                 },
                 'filter' => Html::dropDownList('ArtworkSearch[theme_id]', $searchModel->theme_id, Artwork::getThemeOptions(), ['class'=>'form-control','prompt'=>' ']),
                 'options' => ['class' => 'col-md-2'],
@@ -79,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'data-id'=>$data->id,
                             'artwork-update-attr' => Url::to(['artwork/update-attribute'])
                         ]
-                    ) . Html::button('<span class="glyphicon glyphicon-refresh"></span>',['class'=>'btn btn-sm btn-danger update-attr-btn', 'data-attr' => 'category']);
+                    ) . Html::button('<span class="glyphicon glyphicon-refresh"></span>',['class'=>'btn btn-sm btn-danger update-attr-btn', 'data-attr' => 'category_id']);
                 },
                 'filter' => Html::dropDownList('ArtworkSearch[category_id]', $searchModel->category_id, Artwork::getCategoryOptions(), ['class'=>'form-control','prompt'=>' ']),
                 'options' => ['class' => 'col-md-2'],
@@ -101,7 +101,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'data-id'=>$data->id,
                             'artwork-update-attr' => Url::to(['artwork/update-attribute'])
                         ]
-                    ) . Html::button('<span class="glyphicon glyphicon-refresh"></span>',['class'=>'btn btn-sm btn-danger update-attr-btn', 'data-attr' => 'style']);
+                    ) . Html::button('<span class="glyphicon glyphicon-refresh"></span>',['class'=>'btn btn-sm btn-danger update-attr-btn', 'data-attr' => 'style_id']);
                 },
                 'filter' => Html::dropDownList('ArtworkSearch[style_id]', $searchModel->style_id, Artwork::getStyleOptions(), ['class'=>'form-control','prompt'=>' ']),
                 'options' => ['class' => 'col-md-2'],
@@ -122,7 +122,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'data-id'=>$data->id,
                             'artwork-update-attr' => Url::to(['artwork/update-attribute'])
                         ]
-                    ) . Html::button('<span class="glyphicon glyphicon-refresh"></span>',['class'=>'btn btn-sm btn-danger update-attr-btn', 'data-attr' => 'technic']);
+                    ) . Html::button('<span class="glyphicon glyphicon-refresh"></span>',['class'=>'btn btn-sm btn-danger update-attr-btn', 'data-attr' => 'technic_id']);
                 },
                 'filter' => Html::dropDownList('ArtworkSearch[technic_id]', $searchModel->technic_id, Artwork::getTechnicOptions(), ['class'=>'form-control','prompt'=>' ']),
                 'options' => ['class' => 'col-md-2'],
@@ -134,9 +134,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'yii\grid\DataColumn',
                 'format' => 'html',
                 'content' => function($data){ 
-                    $imageArray = $data->getImageURLs(['small_']);
-                    if(isset($imageArray['small_'])){
-                        $small_thumb = $imageArray['small_'];
+                    $imageArray = $data->getImageURLs(['small-']);
+                    if(isset($imageArray['small-'])){
+                        $small_thumb = $imageArray['small-'];
                     }
                     else{
                         $small_thumb = null;

@@ -2,10 +2,14 @@
 
 /* @var $this yii\web\View */
 
-$this->title = Yii::t('app','Gallery');
-
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\LinkPager;
+use yii\widgets\ListView;
+
+$this->title = Yii::t('app','Gallery');
+
+
 ?>
 <!--============================== content =================================-->
       
@@ -16,53 +20,27 @@ use yii\helpers\Url;
               <h3><?= Yii::t('app','Gallery') ?></h3>
         </article>
         <div class="clear"></div>
-        <ul class="thumbnails thumbnails-1 list-services">
-        <?php foreach($artworks as $artwork): ?>
-        <?php
-            $caption = "
-                         
-                            <strong>" . $artwork->title  . "</strong><span><small>" . Yii::t('app','Width') . ": " . $artwork->width . "cm x " . Yii::t('app','height') . ": " . $artwork->height . "cm </span>
-                            
-                                #" . $artwork->theme->title . "
-                                #" . $artwork->style->title . "
-                                #" . $artwork->technic->title . "
-                            </small>
-                        
-                        <p>  
-                            <span>" . $artwork->description . "</span>
-                        </p>
-
-                    ";
-
-            
-          $size = getimagesize($artwork->getImagePath('bigger_'));
-          $htmlWidth = $size[0];
-          $htmlHeight = $size[1];
-                
-        ?>
-        <li class="span4">
-
-            <div class="thumbnail thumbnail-1"> <?= Html::a(Html::img($artwork->getImageURLs(['bigger_'])['bigger_'],['width'=>$htmlWidth,'height'=>$htmlHeight]), 
-                $artwork->getImageURLs(['main_'])['main_'], ['class' => 'gallery-item', 'data-caption' => $caption,'onclick'=>"updateViewCounter($featured->id)"]) ?>
-                <section> 
-                    <?php
-                        echo   "<h5>" . $artwork->title  . "</h5> 
-                        
-                            <span><small>" . Yii::t('app','Width') . ": " . $artwork->width . "cm x " . Yii::t('app','height') . ": " . $artwork->height . "cm </span>
-                            <div>
-                                #" . $artwork->theme->title . "
-                                #" . $artwork->style->title . "
-                                #" . $artwork->technic->title . "
-                            </div>
-                            </small>
-                        
-                        ";
-                    ?>
-                </section>
-            </div>
-        </li>
-        <?php endforeach; ?>
-        </ul>
+        
+        <?= ListView::widget([
+                'dataProvider' => $dataProvider,
+                'itemView' => '_artwork',
+                'emptyText' => false,
+                'layout' => '<ul class="thumbnails thumbnails-1 list-services infinite-scroll">{items}</ul><div class="span4 offset4">{pager}</div>',
+                'pager' => [
+                    'class' => \yii\widgets\LinkPager::className(),
+                    'maxButtonCount' => 4,
+                    'disableCurrentPageButton' => true,
+                ]
+//                'pager' => [
+//                    'class' => \kop\y2sp\ScrollPager::className(),
+//                    'item' => '.item',
+//                    'triggerTemplate' => '<div class="ias-trigger" style="margin-left: 50%; cursor: pointer;" ><a><strong>{text}</strong></a></div>',
+//                    'eventOnRendered' => ' $(".gallery-item").magnificPopup({type: "image", gallery: {enabled: true}, image: {titleSrc: "data-caption"}}) '
+//                ]
+            ])?>
+ 
+        <div id="trigger-place"> </div>
         </div>
+        
     </div>
 </div>

@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 
-$imgUrl = $model->getImageURLs(['big_'])['big_'];
+$imgUrl = $model->getImageURLs(['big-'])['big-'];
 
 ?>
 
