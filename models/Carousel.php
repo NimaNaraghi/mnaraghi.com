@@ -105,7 +105,7 @@ class Carousel extends \yii\db\ActiveRecord
 
     public function getImageURL()
     {
-        return Url::base() . 'uploads/images/carousel/' . self::IMAGE_PREFIX . md5($this->artwork->id) . '.jpg'; 
+        return Url::base() . '/uploads/images/carousel/' . self::IMAGE_PREFIX . md5($this->artwork->id) . '.jpg'; 
     }
 
     public function getImagePath()

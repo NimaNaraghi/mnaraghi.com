@@ -56,7 +56,7 @@ $this->title = 'Contact';
           
           <div class="overflow"> 
                 <span><?= Yii::t('app','E-mail:') ?></span> <a href="#" class="mail-1"><?= Yii::$app->params['adminEmail'] ?></a><br>
-                <span>Link:</span> <a href="https://www.artabus.com/mnaraghi/" class="mail-1" target="_blank" rel="nofollow">Artabus.com</a></div>
+                <h6>Links:</h6> <a href="https://www.artabus.com/mnaraghi/" class="mail-1" target="_blank" rel="nofollow">Artabus.com</a>|<a href="https://www.artistsandillustrators.co.uk/MohsenNaraghi" class="mail-1" target="_blank" rel="nofollow">Artistsandillustrators.co.uk/MohsenNaraghi</a></div>
                 <!-- <span>Skype:</span> <a href="#" class="mail-1">@skypename</a></div> -->
           </address>
             </article>
