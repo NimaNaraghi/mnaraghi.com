@@ -169,6 +169,11 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionAbout()
+    {
+        return $this->render('about');
+    }
+
     public function actionIndex()
     {
         $carousels = Carousel::find()->orderBy('order')->all();

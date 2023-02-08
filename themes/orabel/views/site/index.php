@@ -20,20 +20,7 @@ use yii\helpers\Url;
                 <div class="orb-right-side">
                     <div class="orb-menu-frame">
                         <nav>
-                            <ul class="orb-menu">
-                                <li class="<?= Yii::$app->controller->action->id == "index" ? 'orb-current' : null ?>">
-                                    <a href="<?= Url::home() ?>" data-no-swup><?= Yii::t('app', 'Home') ?></a>
-                                </li>
-                                <li class="<?= Yii::$app->controller->action->id == "about" ? 'orb-current' : null ?>">
-                                    <a href="<?= Url::to(['/about']) ?>" data-no-swup><?= Yii::t('app', 'About') ?></a>
-                                </li>
-                                <li class="<?= Yii::$app->controller->action->id == "gallery" ? 'orb-current' : null ?>">
-                                    <a href="<?= Url::to(['/gallery']) ?>" data-no-swup><?= Yii::t('app', 'My Works') ?></a>
-                                </li>
-                                <li class="<?= Yii::$app->controller->action->id == "contact" ? 'orb-current' : null ?>">
-                                    <a href="<?= Url::to(['/contact']) ?>" data-no-swup><?= Yii::t('app', 'Contact') ?></a>
-                                </li>
-                            </ul>
+                            <?= $this->render('menu') ?>
                         </nav>
                     </div>
                 </div>
@@ -94,27 +81,14 @@ use yii\helpers\Url;
                 <div class="orb-g-33 orb-lg-50 orb-sm-100">
                     <div class="orb-menu-frame orb-fs-menu">
                         <nav>
-                            <ul class="orb-menu">
-                                <li class="<?= Yii::$app->controller->action->id == "index" ? 'orb-current' : null ?>">
-                                    <a href="<?= Url::home() ?>" data-no-swup><?= Yii::t('app', 'Home') ?></a>
-                                </li>
-                                <li class="<?= Yii::$app->controller->action->id == "about" ? 'orb-current' : null ?>">
-                                    <a href="<?= Url::to(['/about']) ?>" data-no-swup><?= Yii::t('app', 'About') ?></a>
-                                </li>
-                                <li class="<?= Yii::$app->controller->action->id == "gallery" ? 'orb-current' : null ?>">
-                                    <a href="<?= Url::to(['/gallery']) ?>" data-no-swup><?= Yii::t('app', 'My Works') ?></a>
-                                </li>
-                                <li class="<?= Yii::$app->controller->action->id == "contact" ? 'orb-current' : null ?>">
-                                    <a href="<?= Url::to(['/contact']) ?>" data-no-swup><?= Yii::t('app', 'Contact') ?></a>
-                                </li>
-                            </ul>
+                            <?= $this->render('menu') ?>
                         </nav>
                     </div>
                 </div>
                 <div class="orb-g-33 orb-lg-50 orb-sm-100">
                     <div class="rb-object-frame">
                         <div class="orb-photo-frame orb-obj-1">
-                            <img src="/uploads/images/me/me.jpg" alt="<?= Yii::t('app', 'Mohsen Naraghi') ?>" />
+                            <img src="<?= Yii::$app->params['my-photo-a-url'] ?>" alt="<?= Yii::t('app', 'Mohsen Naraghi') ?>" />
                         </div>
                     </div>
                 </div>
