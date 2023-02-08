@@ -20,12 +20,11 @@ use yii\data\ActiveDataProvider;
 
 class SiteController extends Controller
 {
-    public $defaultAction = 'about';
     public function behaviors()
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'only' => ['logout'],
                 'rules' => [
                     [
@@ -37,7 +36,7 @@ class SiteController extends Controller
 
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
                     'updateCounters' => ['post'],
@@ -170,20 +169,16 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionAbout()
+    public function actionIndex()
     {
         $carousels = Carousel::find()->orderBy('order')->all();
-        $features = Artwork::find()->limit(4)->orderBy('id DESC')->where(['featured' => Artwork::FEATURED_ON,'status' => Artwork::STATUS_ON])->all();
-        $latests = Artwork::find()->limit(12)->orderBy('id DESC')->where(['status' => Artwork::STATUS_ON])->all();
-        $featuredThemes = \app\models\Theme::find()->limit(2)->all();
-        $featuredStyles = \app\models\Style::find()->limit(2)->all();
+        // $features = Artwork::find()->limit(4)->orderBy('id DESC')->where(['featured' => Artwork::FEATURED_ON,'status' => Artwork::STATUS_ON])->all();
+        // $latests = Artwork::find()->limit(12)->orderBy('id DESC')->where(['status' => Artwork::STATUS_ON])->all();
+        // $featuredThemes = \app\models\Theme::find()->limit(2)->all();
+        // $featuredStyles = \app\models\Style::find()->limit(2)->all();
 
-        return $this->render('about',[
+        return $this->render('index',[
             'carousels' => $carousels,
-            'features' => $features,
-            'featuredStyles' => $featuredStyles,
-            'featuredThemes' => $featuredThemes,
-            'latests' => $latests,
         ]);
     }
 

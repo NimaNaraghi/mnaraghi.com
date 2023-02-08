@@ -3,7 +3,6 @@
 namespace app\models;
 
 use Yii;
-use app\models\Carousel;
 use app\models\Artwork;
 use yii\helpers\FileHelper;
 use yii\imagine\Image;
