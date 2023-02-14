@@ -76,57 +76,64 @@ class SiteController extends Controller
     }
 
 
+    // public function actionGallery()
+    // {
+    //     $request = Yii::$app->request;
+    //     $query = Artwork::find()->where(['status' => Artwork::STATUS_ON]);
+
+    //     $theme_id = $style_id = $technic_id = $category_id = null;
+        
+    //     if($request->get('theme') != null){
+    //         $theme = Theme::find()->where(['title' => $request->get('theme')])->one();
+    //         $theme_id = $theme->id;
+    //     }
+    //     if($request->get('style') != null){
+    //         $style = Style::find()->where(['title' => $request->get('style')])->one();
+    //         $style_id = $style->id;
+    //     }
+    //     if($request->get('technic') != null){
+    //         $technic = Technic::find()->where(['title' => $request->get('technic')])->one();
+    //         $technic_id = $technic->id;
+    //     }
+    //     if($request->get('category') != null){
+    //         $category = Category::find()->where(['title' => $request->get('category')])->one();
+    //         $category_id = $category->id;
+    //     }
+    //     $query->andFilterWhere([
+    //         'theme_id' => $theme_id,
+    //         'style_id' => $style_id,
+    //         'technic_id' => $technic_id,
+    //         'category_id' => $category_id,
+    //     ]);
+        
+
+    //    /* $countQuery = clone $query;
+    //     $pages = new Pagination([
+    //         'totalCount' => $countQuery->count(),
+    //         'pageSize' => 10
+    //         ]);*/
+    //     $query->orderBy('code DESC');
+
+    //     /*$artworks = $query->offset($pages->offset)
+    //         ->limit($pages->limit)
+    //         ->all();*/
+    //     $dataProvider = new ActiveDataProvider([
+    //         'query' => $query,
+    //         'pagination' => [
+    //             'pageSize' => 10,
+    //         ],
+    //     ]);
+    //     return $this->render('gallery', [
+    //         'dataProvider' => $dataProvider,
+    //         //'pages' => $pages,
+    //         ]);
+    // }
+
     public function actionGallery()
     {
-        $request = Yii::$app->request;
-        $query = Artwork::find()->where(['status' => Artwork::STATUS_ON]);
+        $models = Artwork::find()->where(['status' => Artwork::STATUS_ON])->all();
 
-        $theme_id = $style_id = $technic_id = $category_id = null;
-        
-        if($request->get('theme') != null){
-            $theme = Theme::find()->where(['title' => $request->get('theme')])->one();
-            $theme_id = $theme->id;
-        }
-        if($request->get('style') != null){
-            $style = Style::find()->where(['title' => $request->get('style')])->one();
-            $style_id = $style->id;
-        }
-        if($request->get('technic') != null){
-            $technic = Technic::find()->where(['title' => $request->get('technic')])->one();
-            $technic_id = $technic->id;
-        }
-        if($request->get('category') != null){
-            $category = Category::find()->where(['title' => $request->get('category')])->one();
-            $category_id = $category->id;
-        }
-        $query->andFilterWhere([
-            'theme_id' => $theme_id,
-            'style_id' => $style_id,
-            'technic_id' => $technic_id,
-            'category_id' => $category_id,
-        ]);
-        
-
-       /* $countQuery = clone $query;
-        $pages = new Pagination([
-            'totalCount' => $countQuery->count(),
-            'pageSize' => 10
-            ]);*/
-        $query->orderBy('code DESC');
-
-        /*$artworks = $query->offset($pages->offset)
-            ->limit($pages->limit)
-            ->all();*/
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => [
-                'pageSize' => 10,
-            ],
-        ]);
-        return $this->render('gallery', [
-            'dataProvider' => $dataProvider,
-            //'pages' => $pages,
-            ]);
+        return $this->render('gallery', ['models' => $models]);
     }
 
     public function actionLogin()

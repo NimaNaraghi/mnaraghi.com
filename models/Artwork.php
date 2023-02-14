@@ -116,7 +116,7 @@ class Artwork extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-            TimestampBehavior::className(),
+            TimestampBehavior::class,
         ];
     }
 
@@ -272,23 +272,65 @@ class Artwork extends \yii\db\ActiveRecord
 
     public function getTheme()
     {
-        return $this->hasOne(Theme::className(), ['id' => 'theme_id']);
+        return $this->hasOne(Theme::class, ['id' => 'theme_id']);
     }
 
     public function getCategory()
     {
-        return $this->hasOne(Category::className(), ['id' => 'category_id']);
+        return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
 
     public function getTechnic()
     {
-        return $this->hasOne(Technic::className(), ['id' => 'technic_id']);
+        return $this->hasOne(Technic::class, ['id' => 'technic_id']);
     }
 
     public function getStyle()
     {
-        return $this->hasOne(Style::className(), ['id' => 'style_id']);
+        return $this->hasOne(Style::class, ['id' => 'style_id']);
     }
 
+    public function getPrettyTitle()
+    {
+        if(!empty($this->title)){
+            $title = $this->title;
+        }else{
+            $title = Yii::t('app','No Title');
+        }
+        
+        return $title;
+    }
+
+    public function getPrettyCaption()
+    {
+        if(isset($this->theme->title)){
+            $themeTitle = $this->theme->title;
+        }
+        else{
+            $themeTitle = "";
+        }
+
+        if(isset($this->technic->title)){
+            $technicTitle = $this->technic->title;
+        }
+        else{
+            $technicTitle = "";
+        }
+        $caption = "
+                     
+                        <strong>" .  $this->prettyTitle . "</strong><span><small>" . Yii::t('app','Width') . ": " . $this->width . "cm x " . Yii::t('app','height') . ": " . $this->height . "cm 
+                        
+                            #" . $themeTitle . "
+                           
+                            #" . $technicTitle . "
+                        </small></span>
+                    
+                    <p>  
+                        <span>" . $this->description . "</span>
+                    </p>
+
+                ";
+        return $caption;
+    }
     
 }
