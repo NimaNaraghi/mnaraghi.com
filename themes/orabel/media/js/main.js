@@ -17,23 +17,23 @@ $(function() {
     // =====================================================
     // PRELOADER
     // =====================================================
-    function anim1() {
-        $('html').removeClass('is-preload');
-    }
+    // function anim1() {
+    //     $('html').removeClass('is-preload');
+    // }
 
-    function anim2() {
-        $('.orb-photo-frame').addClass('orb-active');
-        $('.orb-big-menu .orb-photo-frame').removeClass('orb-active');
-    }
+    // function anim2() {
+    //     $('.orb-photo-frame').addClass('orb-active');
+    //     $('.orb-big-menu .orb-photo-frame').removeClass('orb-active');
+    // }
 
-    function anim3() {
-        $('.orb-big-menu .orb-photo-frame').toggleClass('orb-active');
-    }
-    $(document).ready(function() {
-        setTimeout(anim1, 1500);
-        $('.orb-loader').addClass('orb-active');
-        setTimeout(anim2, 2000);
-    });
+    // function anim3() {
+    //     $('.orb-big-menu .orb-photo-frame').toggleClass('orb-active');
+    // }
+    // $(document).ready(function() {
+    //     setTimeout(anim1, 1500);
+    //     $('.orb-loader').addClass('orb-active');
+    //     setTimeout(anim2, 2000);
+    // });
 
     // =====================================================
     // SWUP
