@@ -90,13 +90,13 @@ $chunks = array_chunk($models, 3);
         </div>
         <div class="orb-description">
             <div class="orb-text">
-                <a href="#.">همه تصاویر</a>
+                <a href="#."><?= Yii::t('app', 'All Artworks') ?></a>
                 <span></span>
             </div>
             <div class="orb-nav-frame">
                 <div class="orb-nav">
-                    <div class="orb-prev"><img src="img/ui/arrow-1.svg" alt="فلش" /></div>
-                    <div class="orb-next"><img src="img/ui/arrow-1.svg" alt="فلش" /></div>
+                    <div class="orb-prev"><img src="img/ui/arrow-1.svg" alt="Arrow" /></div>
+                    <div class="orb-next"><img src="img/ui/arrow-1.svg" alt="Arrow" /></div>
                 </div>
             </div>
         </div>
@@ -125,10 +125,10 @@ $chunks = array_chunk($models, 3);
                     </div>
                     <div class="orb-descr">
                         <div class="orb-descr-title">
-                            <div>منو</div>
+                            <div><?= Yii::t('app', 'Menu') ?></div>
                             <div class="orb-line"></div>
                         </div>
-                        <p>منتظر اخبار و کارهای جدید در اینستاگرام باشید</p>
+                        <p><?= Yii::t('app', 'My Instagram') ?></p>
                         <a href="<?= Yii::$app->params['instagram'] ?>" target="_blank" data-no-swup><img src="img/ui/instagram-2.svg" alt="<?= Yii::t('app', 'Instagram') ?>" /></a>
                     </div>
                 </div>

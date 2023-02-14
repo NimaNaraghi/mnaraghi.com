@@ -39,7 +39,7 @@ use yii\helpers\Url;
                                 <div class="swiper-wrapper">
                                     <?php foreach($carousels as $carousel): ?>
                                     <div class="swiper-slide">
-                                        <img src="<?= $carousel->imageURL ?>" alt="<?= Yii::t('app', 'Art Work') ?>" data-swiper-parallax-x="100" data-swiper-parallax-scale="1.3" data-swiper-parallax-opacity="0" data-swiper-parallax-duration="1200" />
+                                        <img src="<?= $carousel->imageURL ?>" alt="<?= Yii::t('app', 'Artwork') ?>" data-swiper-parallax-x="100" data-swiper-parallax-scale="1.3" data-swiper-parallax-opacity="0" data-swiper-parallax-duration="1200" />
                                     </div>
                                     <?php endforeach; ?>
                                 </div>
@@ -95,11 +95,11 @@ use yii\helpers\Url;
                 <div class="orb-g-33 orb-lg-50 orb-sm-100">
                     <div class="orb-menu-text-frame">
                         <div class="orb-menu-text">
-                            <p>من یک عکاس حرفه ای هستم، حوزه مورد علاقه من عکاسی از مدل ها و عکس برای مجلات مد است.</p>
+                            <p><?= Yii::t('app', 'I\'m a painter.') ?></p>
                         </div>
                         <a href="https://www.instagram.com/" target="_blank" data-no-swup class="orb-instagram">
-                            <span>اینستاگرام من</span>
-                            <img src="img/ui/instagram-2.svg" alt="اینستاگرام" />
+                            <span><?= Yii::t('app', 'My Instagram') ?></span>
+                            <img src="img/ui/instagram-2.svg" alt="Instagram" />
                         </a>
                     </div>
                 </div>

@@ -158,23 +158,23 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if(Yii::$app->request->isAjax){ 
-            //Yii::$app->response->format = \yii\web\response::FORMAT_JSON;
-            $model->name = Yii::$app->request->post('name');
-            $model->email = Yii::$app->request->post('email');
-            $model->message = Yii::$app->request->post('message');
-            if ( $model->contact(Yii::$app->params['adminEmail'])) {  
-                echo "<p>" . Yii::t('app', 'Sent! Thank you!') ."</p>";    
-            }
-        }
+    // public function actionContact()
+    // {
+    //     $model = new ContactForm();
+    //     if(Yii::$app->request->isAjax){ 
+    //         //Yii::$app->response->format = \yii\web\response::FORMAT_JSON;
+    //         $model->name = Yii::$app->request->post('name');
+    //         $model->email = Yii::$app->request->post('email');
+    //         $model->message = Yii::$app->request->post('message');
+    //         if ( $model->contact(Yii::$app->params['adminEmail'])) {  
+    //             echo "<p>" . Yii::t('app', 'Sent! Thank you!') ."</p>";    
+    //         }
+    //     }
 
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
+    //     return $this->render('contact', [
+    //         'model' => $model,
+    //     ]);
+    // }
 
     public function actionAbout()
     {

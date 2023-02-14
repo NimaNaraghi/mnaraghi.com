@@ -13,7 +13,4 @@ use yii\helpers\Url;
     <li class="<?= Yii::$app->controller->action->id == "gallery" ? 'orb-current' : null ?>">
         <a href="<?= Url::to(['/gallery']) ?>" data-no-swup><?= Yii::t('app', 'My Works') ?></a>
     </li>
-    <li class="<?= Yii::$app->controller->action->id == "contact" ? 'orb-current' : null ?>">
-        <a href="<?= Url::to(['/contact']) ?>" data-no-swup><?= Yii::t('app', 'Contact') ?></a>
-    </li>
 </ul>
