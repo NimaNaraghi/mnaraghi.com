@@ -42,14 +42,14 @@ class SiteController extends Controller
                     'updateCounters' => ['post'],
                 ],
             ],
-            /*[
+            [
             'class' => 'yii\filters\HttpCache',
             'only' => ['about','gallery'],
             'lastModified' => function ($action, $params) {
                     $q = new \yii\db\Query();
                     return $q->from('artwork')->max('updated_at');
                 },
-            ],*/
+            ],
             [
                 'class' => 'yii\filters\PageCache',
                 'only' => ['about'],
