@@ -37,8 +37,10 @@
           <div class="orb-grid">
             <div class="orb-g-60 orb-sm-100">
               <div class="orb-about-text">
-                <h1>سلام، نام من مریم است.</h1>
-                <p>سلام، من یک عکاس هستم. من عاشق کارم هستم. من اغلب مجبورم با مردم ارتباط برقرار کنم. من دوست دارم از شخصیت های منحصر به فرد عکاسی کنم.</p>
+                <h1>Shortly about me</h1>
+                <p>My name is Mohsen Naraghi. I was born on January 7, 1956 in Rey, one of the cities of Iran. I went to primary school and high school in this city. In September 1974, I entered the University of Aryamehr (Sharif) to study metallurgical engineering.<br>
+While studying in this major, I learnt designing and etching in the painting studio of the university. A few years later, I passed a specialized chromatics course at the Faculty of Fine Arts of Tehran University. I have created several works using etching and oil painting. However, I feel better about my abstract paintings and find them more compatible with my spirit.<br>
+In my opinion, the further a work of art from reflection and thinking and the more decisive and honest it is, the more artistic and novel it can be.</p>
               </div>
             </div>
             <div class="orb-g-40 orb-sm-100">
@@ -55,9 +57,9 @@
     </div>
     <div class="orb-bottom-panel">
       <div class="orb-instagram">
-        <span>اینستاگرام</span>
+        <span><?= Yii::t('app', 'Instagram') ?></span>
         <div class="orb-line"></div>
-        <a href="https://www.instagram.com/" target="_blank" data-no-swup><img src="img/ui/instagram-1.svg" alt="اینستاگرام" /></a>
+        <a href="https://www.instagram.com/" target="_blank" data-no-swup><img src="img/ui/instagram-1.svg" alt="<?= Yii::t('app', 'Instagram') ?>" /></a>
       </div>
       <a href="mailto:<?= Yii::$app->params['ownerEmail'] ?>" class="orb-mail" data-no-swup><?= Yii::$app->params['ownerEmail'] ?></a>
     </div>
@@ -84,7 +86,9 @@
       <div class="orb-g-33 orb-lg-50 orb-sm-100">
         <div class="orb-menu-text-frame">
           <div class="orb-menu-text">
-            <p>من یک عکاس حرفه ای هستم، حوزه مورد علاقه من عکاسی از مدل ها و عکس برای مجلات مد است.</p>
+          <p>My name is Mohsen Naraghi. I was born on January 7, 1956 in Rey, one of the cities of Iran. I went to primary school and high school in this city. In September 1974, I entered the University of Aryamehr (Sharif) to study metallurgical engineering.<br>
+While studying in this major, I learnt designing and etching in the painting studio of the university. A few years later, I passed a specialized chromatics course at the Faculty of Fine Arts of Tehran University. I have created several works using etching and oil painting. However, I feel better about my abstract paintings and find them more compatible with my spirit.<br>
+In my opinion, the further a work of art from reflection and thinking and the more decisive and honest it is, the more artistic and novel it can be.</p>
           </div>
           <a href="<?= Yii::$app->params['instagram'] ?>" target="_blank" data-no-swup class="orb-instagram">
             <span><?= Yii::t('app', 'My Instagram') ?></span>
