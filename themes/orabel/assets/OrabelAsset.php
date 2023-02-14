@@ -16,6 +16,7 @@ class OrabelAsset extends AssetBundle
         'css/plugins/swiper.min.css',
         'css/plugins/fancybox.min.css',
         'css/style.css',
+        'css/fix.css',
     ];
     public $js = [
         "js/plugins/jquery.min.js",
